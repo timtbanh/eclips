@@ -28,13 +28,13 @@ a.active {
   outline: none;
 }
 a {
-  color: #2b2354;
+  color: #FFFFFF;
 }
 a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #2b2354;
+  color: #FFFFFF;
 }
 h1,
 h2,
@@ -151,7 +151,7 @@ fieldset[disabled] .btn-xl.active {
   border-color: transparent;
 }
 .navbar-custom .navbar-brand {
-  color: #2b2354;
+  color: #FFFFFF;
   font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
 }
 .navbar-custom .navbar-brand:hover,
