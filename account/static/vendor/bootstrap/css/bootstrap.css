@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @bmw019
+ Sign out
+ Watch 7
+  Star 0
+  Fork 0 banhfire/eclips Private
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy patheclips/account/static/vendor/bootstrap/css/bootstrap.css
+d30f8cb  5 hours ago
+ Brian Wong Add our names to 'Our Team'
+0 contributors
+RawBlameHistory     
+6758 lines (6750 sloc)  143 KB
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -240,7 +258,7 @@ th {
   }
   .navbar {
     display: none;
-  }
+    }
   .btn > .caret,
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
@@ -4168,6 +4186,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+    
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4177,6 +4196,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
+      
   }
 }
 .navbar-collapse {
@@ -4243,10 +4263,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-static-top {
   z-index: 1000;
   border-width: 0 0 1px;
+    
 }
 @media (min-width: 768px) {
   .navbar-static-top {
     border-radius: 0;
+      
   }
 }
 .navbar-fixed-top,
@@ -4265,6 +4287,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-fixed-top {
   top: 0;
   border-width: 0 0 1px;
+    
 }
 .navbar-fixed-bottom {
   bottom: 0;
@@ -4302,6 +4325,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+    
 }
 .navbar-toggle:focus {
   outline: 0;
@@ -4327,6 +4351,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+    
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
@@ -4366,6 +4391,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-form {
   padding: 10px 15px;
+    
   margin-top: 8px;
   margin-right: -15px;
   margin-bottom: 8px;
@@ -4456,6 +4482,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+    
 }
 .navbar-btn {
   margin-top: 8px;
@@ -4487,6 +4514,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-right {
     float: right !important;
     margin-right: -15px;
+      
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
@@ -4498,6 +4526,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-brand {
   color: #777;
+    
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -6755,3 +6784,5 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

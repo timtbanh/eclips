@@ -25,6 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
     
 </head>
     
@@ -37,7 +38,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="/" >Eclips</a>
+                <a class="navbar-brand page-scroll" href="/">E-Clips</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,10 +57,12 @@
     <section id="login">
         <div class="container">
             <form name="loginform" id="loginForm" novalidate>
+                                <label for="email">Email:</label>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your Email.">
+                                    <input type="email" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
                                     <p class="help-block text-danger"></p>
                                 </div>
+                                <label for="password">Password:</label>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
                                     <p class="help-block text-danger"></p>

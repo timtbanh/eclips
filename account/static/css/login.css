@@ -1,0 +1,32 @@
+@media (min-width: 768px) {
+  .navbar-custom.affix {
+    background-color: #2b2354;
+    padding: 10px 0;
+  }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 1.5em;
+      color:#2b2354;
+  }
+}
+
+.navbar-fixed-top {
+    color: #2b2354;
+}
+
+.navbar-fixed-top {
+  top: 0;
+  border-width: 0 0 1px;
+}
+
+.navbar {
+    color: #2b2354;
+}
+
+.navbar-default {
+  background-color: #2b2354;
+  border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
