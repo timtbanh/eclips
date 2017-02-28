@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Eclips</title>
+    <title>Login to your E-clips account</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -38,15 +38,21 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="/">E-Clips</a>
+                <a class="navbar-brand page-scroll" href="/">E-clips</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="signup2.html">Sign Up</a>
+                        <a href="help.html">Help</a>
+                    </li>
+                    <li>
+                        <a href="signup.html">Sign Up</a>
                     </li>    
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -57,29 +63,46 @@
     <section id="login">
         <div class="container">
             <form name="loginform" id="loginForm" novalidate>
-                                <label for="email">Email:</label>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <label for="password">Password:</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            <div class="clearfix"></div>
-                            <div class="col-sm-6 text-right">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">LOGIN</button>
-                            </div>
-                            <div class="col-sm-6 text-left">
-                                <div id="forgot"></div>
-                                <button type="forgotpw"
-                                class="btn btn-xl">FORGOT PASSWORD</button>
-                            </div>
-                        
+                <label for="email">Email</label>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <label for="password">Password</label>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="clearfix"></div>
+                <div style="text-align: center;">
+                    <div class="col-xs-4 text-right">
+                        <div id="success"></div>
+                        <button type="submit" class="btn btn-m">LOGIN</button>
+                    </div>
+                    <div class="col-xs-8 text-left">
+                        <div id="forgot"></div>
+                        <button type="forgotpw" class="btn btn-m">FORGOT PASSWORD</button>
+                    </div>
+                </div>
             </form>
         </div>       
-    </section>     
+    </section>
+        
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'js/contact_me.js' %}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'js/agency.min.js' %}"></script>
+        
     </body>
 </html>  

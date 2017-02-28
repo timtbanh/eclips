@@ -6,12 +6,11 @@ from django.http import HttpResponse
 def index(request):
     return render_to_response('index.html')
 
-def account(request):
-    return render_to_response('account/index.html')
-
 def signup(request):
-    return render_to_response('account/signup2.html')
+    return render_to_response('account/signup.html')
 
 def login(request):
 	return render_to_response("account/login.html")
 
+def help(request):
+    return render_to_response("account/help.html")

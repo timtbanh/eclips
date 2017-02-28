@@ -5,9 +5,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^$', v.index, name='index'),
-    url(r'^account/signup2.html$', v.signup, name='signup'),
+    url(r'^account/signup.html$', v.signup, name='signup'),
     url(r'^account/login.html$', v.login, name='login'),
-    url(r'^account/help.html$', v.login, name='help'),
+    url(r'^account/help.html$', v.help, name='help'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
