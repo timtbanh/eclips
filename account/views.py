@@ -14,3 +14,5 @@ def login(request):
 
 def help(request):
     return render_to_response("account/help.html")
+def barberhome(request):
+    return render_to_response("account/barberhome.html")
