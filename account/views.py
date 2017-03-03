@@ -14,5 +14,5 @@ def login(request):
 
 def help(request):
     return render_to_response("account/help.html")
-def bprofile(request):
-    return render_to_response("account/bprofile.html")
+def barberhome(request):
+    return render_to_response("account/barberhome.html")

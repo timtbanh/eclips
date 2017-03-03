@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^account/signup.html$', v.signup, name='signup'),
     url(r'^account/login.html$', v.login, name='login'),
     url(r'^account/help.html$', v.help, name='help'),
-    url(r'^account/bprofile.html$', v.bprofile, name='bprofile'),
+    url(r'^account/barberhome.html$', v.barberhome, name='barberhome'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
