@@ -26,7 +26,7 @@
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/barberhome.css' %}" rel="stylesheet">
-    
+    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
 </head>
     
 <body id="page-top" class="index">  
@@ -49,7 +49,7 @@
                     <a href="help.html">Help</a>
                 </li>
                 <li>
-                    <a href="index.html">Sign Out</a>
+                    <a href="/">Sign Out</a>
                 </li>    
             </ul>
         </div>
@@ -63,17 +63,17 @@
             <div class="row">
                 <div class="col-sm-3 well">
                     <div class="well">
-                        <p><a href="#">My Profile</a></p>
-                        <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar"> -->
+                        <p><a href="barberhome.html">My Profile</a></p>
+                        <img src="https://cdn-images-1.medium.com/max/640/1*O5p8rQJCFJYQz9hxTWfIuw.jpeg" class="img-circle" height="100" width="100" alt="Avatar">
                     </div>
                     <div class="well">
-                        <p><a href="#">Interests</a></p>
+                        <p><a href="#">Your Services</a></p>
                         <p>
-                            <span class="label label-default">News</span>
-                            <span class="label label-success">Labels</span>
-                            <span class="label label-info">Football</span>
-                            <span class="label label-warning">Gaming</span>
-                            <span class="label label-danger">Friends</span>
+                            <span class="label label-default">Lineups</span>
+                            <span class="label label-success">Fades</span>
+                            <span class="label label-info">Combovers</span>
+                            <span class="label label-warning">Undercuts</span>
+                            <span class="label label-danger">Pompadours</span>
                         </p>
                     </div>
                     <div class="alert alert-success fade in">
@@ -86,69 +86,90 @@
                     <p><a href="#">Link</a></p>
                 </div>
                 <div class="col-sm-7">
-    
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-default text-left">
                                 <div class="panel-body">
-                                    <p contenteditable="true">Status: Feeling Blue</p>
-                                    <button type="button" class="btn btn-default btn-sm">
+                                    <p contenteditable="true">Status: Taking Appointments</p>
+                                    <!--<button type="button" class="btn btn-default btn-sm">
                                         <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                    </button>     
+                                    </button>-->
+                                    <p>Your Rating:</p>
+                                    <span class="starRating">
+                                        <input id="rating5" type="radio" name="rating" value="5">
+                                        <label for="rating5">5</label>
+                                        <input id="rating4" type="radio" name="rating" value="4">
+                                        <label for="rating4">4</label>
+                                        <input id="rating3" type="radio" name="rating" value="3">
+                                        <label for="rating3">3</label>
+                                        <input id="rating2" type="radio" name="rating" value="2">
+                                        <label for="rating2">2</label>
+                                        <input id="rating1" type="radio" name="rating" value="1">
+                                        <label for="rating1">1</label>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-      
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="well">
-                                <p>John</p>
-                               <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9">
+                                    <h3 class="section-heading">Recent Comments</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Danny Phantom</p>
+                                        <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>Excellent Haircut! 10/10 would recommend!</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="well">
-                                <p>Bo</p>
-                                <!--<img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Jemes Roe</p>
+                                        <!--<img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>WORST HAIRCUT OF MY LIFE!! DON'T GET YOUR HAIRCUT HERE. WILL REGRET IT!!!</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Booby Smurda</p>
+                                        <!-- <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>Unforgettable experience.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="well">
-                                <p>Jane</p>
-                               <!-- <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="well">
-                                <p>Anja</p>
-                                <!--<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Aubrey Graham</p>
+                                        <!--<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>This is my favorite barber of all time. He does a great job with combovers and fades all for a great price. 10/10</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>     
