@@ -65,17 +65,16 @@
     <section id="signup">
         <div class="container">
             <div class="row">
-                <form name="createaccount" id="signupForm">
                     <div class="col-md-12">
                         <label>CHECK ONE ONLY:</label>
                         <div class="form-group">
                             <label class="switch">
-                                <input type="checkbox" id="barberBox">
+                                <input type="radio" id="barberBox" value="barberValue" checked>
                                 <label for "barberCheck">I Am A Barber</label>
                             </label>
                             <label class="switch">
-                                <input type="checkbox" id="barberBox"
-                                value="barberCheck">
+                                <input type="radio" id="clientBox"
+                                value="clientValue">
                                 <label for "clientCheck">I Am A Client</label>
                             </label>
                         </div>
@@ -103,10 +102,9 @@
                         <div class="clearfix"></div>
                         <div class="col-md-12 text-center">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Create Account</button>
+                            <button onclick="checkBoxes()" type="submit" class="btn btn-xl" >Create Account</button>
                         </div>
                     </div>
-                </form>
             </div>
         </div>    
     </section>   
@@ -127,4 +125,16 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
     </body>
+    
+    <script>
+        function checkBoxes() {
+            var ret = document.getElementById("barberBox").checked;
+            if (ret == true) {
+                window.location="barbercreation.html";
+            }
+            else {
+                window.location="clientcreation.html";
+            }
+        }
+    </script>
 </html>   
