@@ -62,30 +62,32 @@
         
     <section id="login">
         <div class="container">
-            <form name="loginform" id="loginForm">
-                <label for="email">Email</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
-                    <p class="help-block text-danger"></p>
-                </div>
-                <label for="password">Password</label>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="clearfix"></div>
-                <div style="text-align: center;">
-                    <div class="col-xs-5 text-right">
-                        <div id="success"></div>
-                       <!-- <button type="submit" class="btn btn-m">LOGIN</button> -->
-                        <a class="btn btn-m" href="barberhome.html">LOGIN</a>
+            <div class="row">
+                <form name="loginform" id="loginForm">
+                    <div class="col-md-12">
+                    
+                        <label for="email">Email</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
+                        </div>
+                        <label for="password">Password</label>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="text-align: center;">
+                        <div class="col-xs-5 text-right">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-m" href="barberhome.html">LOGIN</button>
+                        </div>
+                        <div class="col-xs-7 text-left">
+                            <div id="forgot"></div>
+                            <button type="forgotpw" class="btn btn-m">FORGOT PASSWORD</button>
+                        </div>
                     </div>
-                    <div class="col-xs-7 text-left">
-                        <div id="forgot"></div>
-                        <button type="forgotpw" class="btn btn-m">FORGOT PASSWORD</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>       
     </section>
         
