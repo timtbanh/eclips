@@ -9,6 +9,9 @@ urlpatterns = [
     url(r'^account/login.html$', v.login, name='login'),
     url(r'^account/help.html$', v.help, name='help'),
     url(r'^account/barberhome.html$', v.barberhome, name='barberhome'),
+    url(r'^account/barbercreation.html$', v.barbercreation, name='barbercreation'),
+    url(r'^account/clientcreation.html$', v.clientcreation,
+    name='clientcreation'),
     url(r'^account/clienthome.html$', v.clienthome, name='clienthome'),
 ]
 

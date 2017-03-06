@@ -18,5 +18,11 @@ def help(request):
 def barberhome(request):
     return render_to_response("account/barberhome.html")
 
+def barbercreation(request):
+    return render_to_response("account/barbercreation.html")
+
+def clientcreation(request):
+    return render_to_response("account/clientcreation.html")
+
 def clienthome(request):
     return render_to_response("account/clienthome.html")
