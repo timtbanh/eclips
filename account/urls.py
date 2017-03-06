@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^account/clientcreation.html$', v.clientcreation,
     name='clientcreation'),
     url(r'^account/clienthome.html$', v.clienthome, name='clienthome'),
+    url(r'^account/barberprofile.html$', v.barberprofile, name='barberprofile'),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()

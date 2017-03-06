@@ -26,3 +26,5 @@ def clientcreation(request):
 
 def clienthome(request):
     return render_to_response("account/clienthome.html")
+def barberprofile(request):
+    return render_to_response("account/barberprofile.html")
