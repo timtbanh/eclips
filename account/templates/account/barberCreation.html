@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sign Up Page</title>
+    <title>Barber Creation</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/signup2.css' %}"
+    <link href="{% static 'css/barberCreation.css' %}"
     rel="stylesheet">
     
 </head>
@@ -49,12 +49,6 @@
                 <li>
                     <a href="help.html">Help</a>
                 </li>
-                <li>
-                    <a href="signup.html">Sign Up</a>
-                </li>    
-                <li>
-                    <a href="login.html">Login</a>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -62,48 +56,29 @@
     <!-- /.container-fluid -->
     </nav>
         
-    <section id="signup">
+    <section id="barberAccountCreation">
         <div class="container">
             <div class="row">
                 <form name="createaccount" id="signupForm">
                     <div class="col-md-12">
-                        <label>CHECK ONE ONLY:</label>
+                        
+                        <label for="firstName">Address: </label>
                         <div class="form-group">
-                            <label class="switch">
-                                <input type="checkbox" id="barberBox">
-                                <label for "barberCheck">I Am A Barber</label>
-                            </label>
-                            <label class="switch">
-                                <input type="checkbox" id="barberBox"
-                                value="barberCheck">
-                                <label for "clientCheck">I Am A Client</label>
-                            </label>
+                            <input type="text" class="form-control" placeholder="123 Address Street" id="address" required data-validation-required message="Please enter your address.">
                         </div>
-                            
-                        <label for="firstName">First Name: </label>
+                        <label for="city">City:</label>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="John" id="firstName" required data-validation-required message="Please enter your first name.">
+                            <input type="text" class="form-control" placeholder="San Diego" id="city" required data-validation-required message="Please enter your city.">
                         </div>
-                        <label for="lastName">Last Name: </label>
+                        <label for="State">State: </label>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Doe" id="lastName" required data-validation-required message="Please enter your last name.">
+                            <input type="zipcode" class="form-control" placeholder="92122" id="zipcode" required data-validation-required-message="Please enter your zip code.">
                         </div>
-                        <label for="email">Email Address: </label>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your email address.">
-                        </div>
-                        <label for="password">Password: </label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="At least 5 characters long" id="password" required data-validation-required message="Please create a password with at least 5 characters.">
-                        </div>
-                        <label for="phone">Phone Number: </label>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="(800) 123-4567" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        </div>
+                        
                         <div class="clearfix"></div>
                         <div class="col-md-12 text-center">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Create Account</button>
+                            <button type="submit" class="btn btn-xl">Create Profile</button>
                         </div>
                     </div>
                 </form>
