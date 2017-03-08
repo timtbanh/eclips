@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^account/barbercreation.html$', v.barbercreation, name='barbercreation'),
     url(r'^account/clientcreation.html$', v.clientcreation,
     name='clientcreation'),
-    url(r'^account/clienthome.html$', v.clienthome, name='clienthome'),
+    url(r'^account/(?P<clientEmail>.*)/clienthome.html$', v.clienthome, name='clienthome'),
     url(r'^account/barberprofile.html$', v.barberprofile, name='barberprofile'),
     
 ]

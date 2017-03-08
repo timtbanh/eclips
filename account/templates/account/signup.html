@@ -61,44 +61,66 @@
     </div>
     <!-- /.container-fluid -->
     </nav>
-        
+    
+
+    {% if form.errors %}
+    <p style="color: red;">
+        Please correct the error{{ form.errors|pluralize }} below.
+    </p>
+    {% endif %}
+
+
+    <form role="form" action="" method="post">
+    {% csrf_token %}
+
     <section id="signup">
         <div class="container">
             <div class="row">
                     <div class="col-md-12">
+                        <p>{{ form.non_field_errors }}</p>
                         <label>CHECK ONE ONLY:</label>
+
                         <div class="form-group">
+                            {{ form.password.errors }}
+                            {% for radio in form.userType %}
                             <label class="switch">
-                                <input type="radio" id="barberBox" value="barberValue" checked>
-                                <label for "barberCheck">I Am A Barber</label>
+                                {{radio}}
                             </label>
-                            <label class="switch">
-                                <input type="radio" id="clientBox"
-                                value="clientValue">
-                                <label for "clientCheck">I Am A Client</label>
-                            </label>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.firstName.errors }}
+                            <label placeholder="Joe" for="{{ form.firstName.id_for_label }}">First Name: </label>
+                            {{ form.firstName }}
+                        </div>
+                      
+                        <div class="form-group">
+                            {{ form.lastName.errors }}
+                            <label placeholder="Doe" for="{{ form.lastName.id_for_label }}">Last Name: </label>
+                            {{ form.lastName }}
+                        </div>
+
+
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label placeholder="name@example.com" for="{{ form.email.id_for_label }}">Email Address: </label>
+                            {{ form.email }}
+                        </div>
+            
+
+                        <div class="form-group">
+                            {{ form.password.errors }}
+                            <label placeholder="Enter a passsword" for="{{ form.password.id_for_label }}">Password: </label>
+                            {{ form.password }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label placeholder="(800) 123-4567" for="{{ form.phone.id_for_label }}">Phone Number: </label>
+                            {{ form.phone }}
                         </div>
                             
-                        <label for="firstName">First Name: </label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="John" id="firstName" required data-validation-required message="Please enter your first name.">
-                        </div>
-                        <label for="lastName">Last Name: </label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Doe" id="lastName" required data-validation-required message="Please enter your last name.">
-                        </div>
-                        <label for="email">Email Address: </label>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your email address.">
-                        </div>
-                        <label for="password">Password: </label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="At least 5 characters long" id="password" required data-validation-required message="Please create a password with at least 5 characters.">
-                        </div>
-                        <label for="phone">Phone Number: </label>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="(800) 123-4567" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12 text-center">
                             <div id="success"></div>
@@ -108,6 +130,7 @@
             </div>
         </div>    
     </section>   
+</form> 
     
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
