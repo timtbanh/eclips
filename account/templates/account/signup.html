@@ -101,13 +101,11 @@
                             {{ form.lastName }}
                         </div>
 
-
                         <div class="form-group">
                             {{ form.email.errors }}
                             <label placeholder="name@example.com" for="{{ form.email.id_for_label }}">Email Address: </label>
                             {{ form.email }}
                         </div>
-            
 
                         <div class="form-group">
                             {{ form.password.errors }}
@@ -115,6 +113,12 @@
                             {{ form.password }}
                         </div>
 
+                        <div class="form-group">
+                            {{ form.address.errors }}
+                            <label placeholder="123 Street, San Diego, CA 92122" for="{{ form.address.id_for_label }}">Address: </label>
+                            {{ form.address }}
+                        </div>
+                        
                         <div class="form-group">
                             {{ form.phone.errors }}
                             <label placeholder="(800) 123-4567" for="{{ form.phone.id_for_label }}">Phone Number: </label>
@@ -156,7 +160,7 @@
                 window.location="barbercreation.html";
             }
             else {
-                window.location="clientcreation.html";
+                window.location="clienthome.html";
             }
         }
     </script>

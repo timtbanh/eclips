@@ -34,8 +34,9 @@ def signup(request):
             firstName = form.cleaned_data['firstName']
             lastName = form.cleaned_data['lastName']
             email = form.cleaned_data['email']
-            password = pwdEncrypt
             phone = form.cleaned_data['phone']
+            address= form.cleaned_data['address']
+            password = pwdEncrypt
 
             #save info either to Barber or Client model
             if (userType == 'selectBarber'):
@@ -44,7 +45,8 @@ def signup(request):
                     lastName=lastName,
                     email=email,
                     password=password,
-                    phone=phone)
+                    phone=phone
+                    address=address)
                 barberObj.save()    #save to database this new barber
                 return HttpResponseRedirect('barbercreation.html')
             elif(userType == 'selectClient'):
@@ -53,9 +55,10 @@ def signup(request):
                     lastName=lastName,
                     email=email,
                     password=password,
-                    phone=phone)
+                    phone=phone
+                    address=address)
                 clientObj.save()    #save this new client to the database
-                return HttpResponseRedirect('clientcreation.html')
+                return HttpResponseRedirect('clienthome.html')
     else:
         form = SignupForm()
     #signup.html posts to this same page and then this view will redirect
