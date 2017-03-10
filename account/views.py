@@ -34,9 +34,9 @@ def signup(request):
             firstName = form.cleaned_data['firstName']
             lastName = form.cleaned_data['lastName']
             email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            address= form.cleaned_data['address']
             password = pwdEncrypt
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
 
             #save info either to Barber or Client model
             if (userType == 'selectBarber'):
@@ -45,7 +45,7 @@ def signup(request):
                     lastName=lastName,
                     email=email,
                     password=password,
-                    phone=phone
+                    phone=phone,
                     address=address)
                 barberObj.save()    #save to database this new barber
                 return HttpResponseRedirect('barbercreation.html')
@@ -55,7 +55,7 @@ def signup(request):
                     lastName=lastName,
                     email=email,
                     password=password,
-                    phone=phone
+                    phone=phone,
                     address=address)
                 clientObj.save()    #save this new client to the database
                 return HttpResponseRedirect('clienthome.html')
@@ -74,10 +74,29 @@ def barberhome(request):
     return render(request, "account/barberhome.html")
 
 def barbercreation(request):
-    return render(request, "account/barbercreation.html")
+    barberObj = Barber.objects.get(email=barberEmail)
+    returnBarber = getBarber(barberObj)
+    
+    if (request.method == 'POST'):
+        form = BarberCreationForm(data=request.POST)   # instance of BarberCreationForm
 
-def clientcreation(request):
-    return render(request, "account/clientcreation.html")
+        if (form.is_valid()):
+            #save the information in the form to variables
+            desription = form.cleaned_data['description']
+            skills = form.cleaned_data['skills']
+            walkin = form.cleaned_data['walkin']
+            schedule = form.cleaned_data['schedule']
+        
+        if (userType == 'selectBarber'):
+            barberObj = Barber(
+                description=description,
+                skills=skills,
+                walkin=walkin,
+                schedule=schedule)
+            barberObj.save()    #save to database this new barber
+            return HttpResponseRedirect('barberhome.html')
+    
+    return render(request, "account/barbercreation.html", {'barber': returnBarber})
 
 def clienthome(request, clientEmail):
     #filter through the client table by matching emails

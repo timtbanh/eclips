@@ -49,6 +49,9 @@
                 <li>
                     <a href="help.html">Help</a>
                 </li>
+                <li>
+                    <a href="login.html">Sign Up</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -61,18 +64,44 @@
             <div class="row">
                 <form name="createaccount" id="signupForm">
                     <div class="col-md-12">
+                        <p>{{ form.non_field_errors }}</p>
                         
-                        <label for="firstName">Address: </label>
+                        <!-- List of skills 
+                            Description of themselves?
+                            Profile picture?
+                            can't be a form, needs to be larger
+                            need barberedit/clientedit
+                        -->
+                        
+<!--                    USE THIS INSTEAD OF FORMS
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="123 Address Street" id="address" required data-validation-required message="Please enter your address.">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
                         </div>
-                        <label for="city">City:</label>
+-->
+                        
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="San Diego" id="city" required data-validation-required message="Please enter your city.">
+                            {{ form.description.errors }}
+                            <label placeholder="Describe yourself." for="{{ form.description.id_for_label }}">Description: </label>
+                            {{ form.description }}
                         </div>
-                        <label for="State">State: </label>
+                        
                         <div class="form-group">
-                            <input type="zipcode" class="form-control" placeholder="92122" id="zipcode" required data-validation-required-message="Please enter your zip code.">
+                            {{ form.skills.errors }}
+                            <label placeholder="List of Skills i.e. buzzcuts" for="{{ form.skills.id_for_label }}">Your Skills: </label>
+                            {{ form.skills }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.walkin.errors }}
+                            <label placeholder="At home, at shop, at customer, etc." for="{{ form.walkin.id_for_label }}">Where do you cut hair? </label>
+                            {{ form.walkin }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.schedule.errors }}
+                            <label placeholder="Ex: Mornings on Monday - Friday" for="{{ form.schedule.id_for_label }}">Your Schedule: </label>
+                            {{ form.schedule }}
                         </div>
                         
                         <div class="clearfix"></div>
