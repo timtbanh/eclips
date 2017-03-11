@@ -13,10 +13,12 @@ class Barber(models.Model):
     password = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     address = models.CharField(max_length=200, null=True)
-    skills = models.TextField(max_length=200, null=True)#list all the services being offered and their prices
+    
+    price = models.TextField(max_length=200, null=True)#list all the services being offered and their prices
     walkin = models.CharField(max_length=200, null=True)#walkin, goto customer, either
     schedule = models.TextField(null=True)#display schedule in form of text
     description = models.TextField(null=True) #other wanted information
+    
     avgRating = models.IntegerField(null=True)#averaged Rating
     profilePic = models.CharField(max_length=200, null=True)#link to prof pic
     def __str__(self):
