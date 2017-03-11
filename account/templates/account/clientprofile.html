@@ -71,15 +71,18 @@
                         <p><br><b>Location:</b><br>{{client.address}}</p>
                     </div>
                     <div class ="well">
-                        <h4>Contact Info</h4>
+                        <!--<h4>Contact Info</h4>
                         <p><b>Email:</b><br>{{client.email}}<br>
                         <b>Phone Number:</b><br>{{client.phone}}<br>
-                        </p>
+                        </p>-->
+                        <h4>Client Rating</h4>
+                        <p><b>{{client.avgRating}}/5</b></p>
                     </div>
-                </div> 
-                 <div class="col-sm-9">
+                </div>
+                <div class="col-xs-1"></div>
+                <div class="col-sm-8">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <!--<div class="col-sm-12">
                             <div class="panel panel-default text-center">
                                 <div class="panel-body">
                                     <h3 class="section-heading">CLIENT RATING</h3>
@@ -89,14 +92,30 @@
                                 </div>
                             </div>
                         </div>
+                    </div>-->
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body" style="text-align:center">
+                            <h1 class="section-heading">Information</h1>
+                            <h2>Description</h2>
+                            <p>{{client.description}}<br></p>
+                            <!--<h2>Contact Info</h2>
+                            <p><b>Email:</b><br>
+                            {{client.email}}<br>
+                            <b>Phone Number:</b>
+                            <br>{{client.phone}}<br>
+                            </p>-->
+                        </div>
                     </div>
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
-                            <h3 class="section-heading">Information</h3>
-                            <p>{{client.description}}
+                            <h1 class="section-heading">Contact Info</h1>
+                            <p><b>Email:</b><br>
+                            {{client.email}}<br>
+                            <b>Phone Number:</b>
+                            <br>{{client.phone}}<br>
                             </p>
                         </div>
-                    </div>   
+                    </div>
                 </div>
             </div>
         </div>

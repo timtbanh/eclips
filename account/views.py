@@ -49,6 +49,8 @@ def signup(request):
                     address=address)
                 barberObj.save()    #save to database this new barber
                 return HttpResponseRedirect('barbercreation.html')
+                #returnBarber=getBarber(barberObj)
+                #return render(request, "account/barbercreation.html", {'barber': returnBarber}
             elif(userType == 'selectClient'):
                 clientObj = Client(
                     firstName=firstName,
