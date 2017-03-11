@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm
+from .forms import SignupForm, EditClientProfileForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
@@ -117,6 +117,7 @@ def clienthome(request, clientEmail):
 
 def barberprofile(request):
     return render(request, "account/barberprofile.html")
+
 def clientprofile(request, clientEmail):
     #filter through the client table by matching emails
     clientObj = Client.objects.get(email=clientEmail)
@@ -124,3 +125,23 @@ def clientprofile(request, clientEmail):
     # send the information about the particular client with matching
     # email to clientprofile.html
     return render(request, "account/clientprofile.html", {'client': returnClient})
+
+def editclient(request, clientEmail):
+    clientObj = Client.objects.get(email=clientEmail)
+    data={'email':clientObj.email,'phone':clientObj.phone,'address':clientObj.address,'description':clientObj.description}
+    form = EditClientProfileForm(initial=data)   # instance of EditClientProfileForm
+
+    if (form.is_valid()):
+        #save the information in the form to variables
+        email = form.cleaned_data['email']
+        phone = form.cleaned_data['phone']
+        address = form.cleaned_data['address']
+        description = form.cleaned_data['description']
+
+        clientObj.email = email
+        clientObj.phone = phone
+        clientObj.address = address
+        clientObj.description = description
+        return HttpResponseRedirect('clientprofile.html')
+    #editclient.html posts to this same page and then this view will redirect
+    return render(request, 'account/editclient.html', {'form': form})

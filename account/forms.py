@@ -22,3 +22,8 @@ class BarberCreationForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
+class EditClientProfileForm(forms.Form):
+    description = forms.CharField(widget=forms.Textarea)
+    email = forms.EmailField()
+    address = forms.CharField()
+    phone = forms.CharField()
