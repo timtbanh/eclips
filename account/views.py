@@ -115,5 +115,10 @@ def clienthome(request, clientEmail):
 
 def barberprofile(request):
     return render(request, "account/barberprofile.html")
-def clientprofile(request):
-    return render(request, "account/clientprofile.html")
+def clientprofile(request, clientEmail):
+    #filter through the client table by matching emails
+    clientObj = Client.objects.get(email=clientEmail)
+    returnClient = getClient(clientObj)
+    # send the information about the particular client with matching
+    # email to clientprofile.html
+    return render(request, "account/clientprofile.html", {'client': returnClient})
