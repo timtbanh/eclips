@@ -110,3 +110,5 @@ def clienthome(request, clientEmail):
 
 def barberprofile(request):
     return render(request, "account/barberprofile.html")
+def clientprofile(request):
+    return render(request, "account/clientprofile.html")
