@@ -22,3 +22,4 @@ class BarberCreationForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
+    

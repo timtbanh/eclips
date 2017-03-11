@@ -4,6 +4,7 @@ from .forms import SignupForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
+
 #   helper function to save all client info in one object
 def getClient(clientObj):
     return {
@@ -16,6 +17,23 @@ def getClient(clientObj):
         'description': clientObj.description,
         'avgRating': clientObj.avgRating,
         'profilePic': clientObj.profilePic
+    }
+
+#   helper function to save all client info in one object
+def getBarber(barberObj):
+    return {
+        'firstName': barberObj.firstName,
+        'lastName': barberObj.lastName,
+        'email': barberObj.email,
+        'password': barberObj.password,
+        'phone': barberObj.phone,
+        'address': barberObj.address,
+        'description': barberObj.description,
+        'price': barberObj.price,
+        'walkin': barberObj.walkin,
+        'schedule': barberObj.schedule,
+        'avgRating': barberObj.avgRating,
+        'profilePic': barberObj.profilePic
     }
 
 def index(request):
