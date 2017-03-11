@@ -17,13 +17,8 @@ class SignupForm(forms.Form):
     
 class BarberCreationForm(forms.Form):
     # what else should be included here? PRICES, SCHEDULE, WALKIN, DRIVE TO
-#    description = TAModelForm
-#    skills = TAModelForm
-#    walkin = forms.CharField()
-#    schedule = TAModelForm
     description = forms.CharField()
     price = forms.CharField()
     walkin = forms.CharField()
     schedule = forms.CharField()
-    
     
