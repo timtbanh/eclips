@@ -2,3 +2,5 @@ venv
 *.pyc
 staticfiles
 .env
+*.sublime-project
+*.sublime-workspace
