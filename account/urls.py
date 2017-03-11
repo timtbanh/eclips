@@ -15,7 +15,8 @@ urlpatterns = [
     
     url(r'^account/(?P<clientEmail>.*)/clienthome.html$', v.clienthome, name='clienthome'),
     url(r'^account/barberprofile.html$', v.barberprofile, name='barberprofile'),
-    
+    url(r'^account/clientprofile.html$', v.clientprofile, name='clientprofile'),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
