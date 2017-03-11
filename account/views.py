@@ -70,8 +70,13 @@ def login(request):
 def help(request):
     return render(request, "account/help.html")
 
-def barberhome(request):
-    return render(request, "account/barberhome.html")
+def barberhome(request, barberEmail):
+    #filter through the barber table by matching emails
+    barberObj = Barber.objects.get(email=barberEmail)
+    returnBarber = getBarber(barberObj)
+    # send the information about the particular barber with matching
+    # email to barberhome.html
+    return render(request, "account/barberhome.html", {'barber': returnBarber})
 
 def barbercreation(request, barberEmail):
     barberObj = Barber.objects.get(email=barberEmail)
