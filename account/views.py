@@ -146,7 +146,8 @@ def clientprofile(request, clientEmail):
 
 def editclient(request, clientEmail):
     clientObj = Client.objects.get(email=clientEmail)
-    form=EditClientProfileForm(instance=clientObj)
+    data={'email':clientObj.email,'phone':clientObj.phone,'address':clientObj.address,'description':clientObj.description}
+    form=EditClientProfileForm(initial=data)
     
     if(request.method=='POST'):
         if (form.is_valid()):

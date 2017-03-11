@@ -23,19 +23,8 @@ class BarberCreationForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
-<<<<<<< HEAD
-class EditClientProfileForm(forms.ModelForm):
-    class Meta:
-        model = Client
-        fields = ['description','email','address','phone']
-=======
-<<<<<<< HEAD
-    
-=======
 class EditClientProfileForm(forms.Form):
->>>>>>> 2ba2c2ae8cc9867889015d70d4535b791b2b1dee
     description = forms.CharField(widget=forms.Textarea)
     email = forms.EmailField()
     address = forms.CharField()
     phone = forms.CharField()
->>>>>>> 43150f7c2dc9df929fc9d72c5dd13233a9eaa948
