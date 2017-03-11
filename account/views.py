@@ -128,20 +128,21 @@ def clientprofile(request, clientEmail):
 
 def editclient(request, clientEmail):
     clientObj = Client.objects.get(email=clientEmail)
-    data={'email':clientObj.email,'phone':clientObj.phone,'address':clientObj.address,'description':clientObj.description}
-    form = EditClientProfileForm(initial=data)   # instance of EditClientProfileForm
+    form=EditClientProfileForm(instance=clientObj)
+    
+    if(request.method=='POST'):
+        if (form.is_valid()):
+            #save the information in the form to variables
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
+            description = form.cleaned_data['description']
 
-    if (form.is_valid()):
-        #save the information in the form to variables
-        email = form.cleaned_data['email']
-        phone = form.cleaned_data['phone']
-        address = form.cleaned_data['address']
-        description = form.cleaned_data['description']
-
-        clientObj.email = email
-        clientObj.phone = phone
-        clientObj.address = address
-        clientObj.description = description
-        return HttpResponseRedirect('clientprofile.html')
+            clientObj.email = email
+            clientObj.phone = phone
+            clientObj.address = address
+            clientObj.description = description
+            clientObj.save();
+        
     #editclient.html posts to this same page and then this view will redirect
     return render(request, 'account/editclient.html', {'form': form})

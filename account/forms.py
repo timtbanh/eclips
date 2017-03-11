@@ -1,4 +1,5 @@
 from django import forms
+from models import Client
 
 class SignupForm(forms.Form):
     # choices used for the radio button
@@ -22,7 +23,10 @@ class BarberCreationForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
-class EditClientProfileForm(forms.Form):
+class EditClientProfileForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['description','email','address','phone']
     description = forms.CharField(widget=forms.Textarea)
     email = forms.EmailField()
     address = forms.CharField()
