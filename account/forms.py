@@ -14,16 +14,16 @@ class SignupForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
     phone = forms.CharField()
     
-class TAModelForm( forms.ModelForm ):
-    # TA means Textarea
-    descr = forms.CharField( widget=forms.Textarea )
-    class Meta:
-        model = Textarea
     
 class BarberCreationForm(forms.Form):
     # what else should be included here? PRICES, SCHEDULE, WALKIN, DRIVE TO
-    description = TAModelForm
-    skills = TAModelForm
+#    description = TAModelForm
+#    skills = TAModelForm
+#    walkin = forms.CharField()
+#    schedule = TAModelForm
+    description = forms.CharField()
+    price = forms.CharField()
     walkin = forms.CharField()
-    schedule = TAModelForm
+    schedule = forms.CharField()
+    
     

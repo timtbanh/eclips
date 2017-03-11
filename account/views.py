@@ -73,7 +73,7 @@ def help(request):
 def barberhome(request):
     return render(request, "account/barberhome.html")
 
-def barbercreation(request):
+def barbercreation(request, barberEmail):
     barberObj = Barber.objects.get(email=barberEmail)
     returnBarber = getBarber(barberObj)
     
@@ -87,15 +87,17 @@ def barbercreation(request):
             walkin = form.cleaned_data['walkin']
             schedule = form.cleaned_data['schedule']
         
-        if (userType == 'selectBarber'):
-            barberObj = Barber(
-                description=description,
-                skills=skills,
-                walkin=walkin,
-                schedule=schedule)
-            barberObj.save()    #save to database this new barber
-            return HttpResponseRedirect('barberhome.html')
-    
+            if (userType == 'selectBarber'):
+                barberObj = Barber(
+                    description=description,
+                    skills=skills,
+                    walkin=walkin,
+                    schedule=schedule)
+                barberObj.save()    #save to database this new barber
+                return HttpResponseRedirect('barberhome.html')
+    else:
+        form = BarberCreationForm()
+        
     return render(request, "account/barbercreation.html", {'barber': returnBarber})
 
 def clienthome(request, clientEmail):
