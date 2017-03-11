@@ -22,4 +22,12 @@ class BarberCreationForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
+<<<<<<< HEAD
     
+=======
+class EditClientProfileForm(forms.Form):
+    description = forms.CharField(widget=forms.Textarea)
+    email = forms.EmailField()
+    address = forms.CharField()
+    phone = forms.CharField()
+>>>>>>> 43150f7c2dc9df929fc9d72c5dd13233a9eaa948
