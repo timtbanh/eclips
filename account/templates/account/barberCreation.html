@@ -62,7 +62,9 @@
     <section id="barberAccountCreation">
         <div class="container">
             <div class="row">
-                <form name="createaccount" id="signupForm">
+                <form role="form" action="" method="post" id="signupForm">
+                {% csrf_token %}
+
                     <div class="col-md-12">
                         <p>{{ form.non_field_errors }}</p>
                         
@@ -82,13 +84,13 @@
                         
                         <div class="form-group">
                             {{ form.description.errors }}
-                            <label placeholder="Describe yourself." for="{{ form.description.id_for_label }}">Description: </label>
+                            <label placeholder="" for="{{ form.description.id_for_label }}">Describe your skills </label>
                             {{ form.description }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.price.errors }}
-                            <label placeholder="List of Skills i.e. buzzcuts" for="{{ form.skills.id_for_label }}">Your Skills: </label>
+                            <label placeholder="" for="{{ form.price.id_for_label }}">List of prices for all services: </label>
                             {{ form.price }}
                         </div>
                         

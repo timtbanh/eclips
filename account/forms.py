@@ -15,8 +15,7 @@ class SignupForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
     phone = forms.CharField()
     
-    
-class BarberCreationForm(forms.Form):
+class BarberInfoForm(forms.Form):
     # what else should be included here? PRICES, SCHEDULE, WALKIN, DRIVE TO
     description = forms.CharField()
     price = forms.CharField()

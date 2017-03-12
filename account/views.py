@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm, EditClientForm
+from .forms import SignupForm, EditClientForm, BarberInfoForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
@@ -39,6 +39,7 @@ def getBarber(barberObj):
 def index(request):
     return render_to_response('index.html')
 
+# conrtroller for crateing a new account
 def signup(request):
     if (request.method == 'POST'):
         form = SignupForm(data=request.POST)   # instance of signupForm
@@ -66,9 +67,9 @@ def signup(request):
                     phone=phone,
                     address=address)
                 barberObj.save()    #save to database this new barber
-                return HttpResponseRedirect('barbercreation.html')
-                #returnBarber=getBarber(barberObj)
-                #return render(request, "account/barbercreation.html", {'barber': returnBarber}
+                outURL = '{0}/{1}'.format(email,'barbercreation.html')
+                return HttpResponseRedirect(outURL)
+
             elif(userType == 'selectClient'):
                 clientObj = Client(
                     firstName=firstName,
@@ -78,7 +79,8 @@ def signup(request):
                     phone=phone,
                     address=address)
                 clientObj.save()    #save this new client to the database
-                return HttpResponseRedirect('clienthome.html')
+                outURL = '{0}/{1}'.format(email,'clienthome.html')
+                return HttpResponseRedirect(outURL)
     else:
         form = SignupForm()
     #signup.html posts to this same page and then this view will redirect
@@ -99,31 +101,33 @@ def barberhome(request, barberEmail):
     return render(request, "account/barberhome.html", {'barber': returnBarber})
 
 def barbercreation(request, barberEmail):
-    barberObj = Barber.objects.get(email=barberEmail)
-    returnBarber = getBarber(barberObj)
     
     if (request.method == 'POST'):
-        form = BarberCreationForm(data=request.POST)   # instance of BarberCreationForm
-
+        form = BarberInfoForm(data=request.POST)   # instance of BarberCreationForm
+        print('form is ' + str(form.is_valid()))
         if (form.is_valid()):
             #save the information in the form to variables
-            desription = form.cleaned_data['description']
-            skills = form.cleaned_data['skills']
+            description = form.cleaned_data['description']
+            price = form.cleaned_data['price']
             walkin = form.cleaned_data['walkin']
             schedule = form.cleaned_data['schedule']
         
-            if (userType == 'selectBarber'):
-                barberObj = Barber(
+            # .filter returns a queryset object
+            barberRow = Barber.objects.filter(email=barberEmail)
+            if (barberRow.exists()):
+                barberRow.update(
                     description=description,
-                    skills=skills,
+                    price=price,
                     walkin=walkin,
                     schedule=schedule)
-                barberObj.save()    #save to database this new barber
-                return HttpResponseRedirect('barberhome.html')
+
+                outURL = 'barberhome.html'
+
+                return HttpResponseRedirect(outURL)
     else:
-        form = BarberCreationForm()
+        form = BarberInfoForm()
         
-    return render(request, "account/barbercreation.html", {'barber': returnBarber})
+    return render(request, "account/barbercreation.html", {'form': form})
 
 def clienthome(request, clientEmail):
     #filter through the client table by matching emails
