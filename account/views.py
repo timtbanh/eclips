@@ -1,8 +1,9 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm
+from .forms import SignupForm, EditClientProfileForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
+
 
 #   helper function to save all client info in one object
 def getClient(clientObj):
@@ -16,6 +17,23 @@ def getClient(clientObj):
         'description': clientObj.description,
         'avgRating': clientObj.avgRating,
         'profilePic': clientObj.profilePic
+    }
+
+#   helper function to save all client info in one object
+def getBarber(barberObj):
+    return {
+        'firstName': barberObj.firstName,
+        'lastName': barberObj.lastName,
+        'email': barberObj.email,
+        'password': barberObj.password,
+        'phone': barberObj.phone,
+        'address': barberObj.address,
+        'description': barberObj.description,
+        'price': barberObj.price,
+        'walkin': barberObj.walkin,
+        'schedule': barberObj.schedule,
+        'avgRating': barberObj.avgRating,
+        'profilePic': barberObj.profilePic
     }
 
 def index(request):
@@ -49,6 +67,8 @@ def signup(request):
                     address=address)
                 barberObj.save()    #save to database this new barber
                 return HttpResponseRedirect('barbercreation.html')
+                #returnBarber=getBarber(barberObj)
+                #return render(request, "account/barbercreation.html", {'barber': returnBarber}
             elif(userType == 'selectClient'):
                 clientObj = Client(
                     firstName=firstName,
@@ -70,8 +90,13 @@ def login(request):
 def help(request):
     return render(request, "account/help.html")
 
-def barberhome(request):
-    return render(request, "account/barberhome.html")
+def barberhome(request, barberEmail):
+    #filter through the barber table by matching emails
+    barberObj = Barber.objects.get(email=barberEmail)
+    returnBarber = getBarber(barberObj)
+    # send the information about the particular barber with matching
+    # email to barberhome.html
+    return render(request, "account/barberhome.html", {'barber': returnBarber})
 
 def barbercreation(request, barberEmail):
     barberObj = Barber.objects.get(email=barberEmail)
@@ -110,5 +135,33 @@ def clienthome(request, clientEmail):
 
 def barberprofile(request):
     return render(request, "account/barberprofile.html")
-def clientprofile(request):
-    return render(request, "account/clientprofile.html")
+
+def clientprofile(request, clientEmail):
+    #filter through the client table by matching emails
+    clientObj = Client.objects.get(email=clientEmail)
+    returnClient = getClient(clientObj)
+    # send the information about the particular client with matching
+    # email to clientprofile.html
+    return render(request, "account/clientprofile.html", {'client': returnClient})
+
+def editclient(request, clientEmail):
+    clientObj = Client.objects.get(email=clientEmail)
+    data={'email':clientObj.email,'phone':clientObj.phone,'address':clientObj.address,'description':clientObj.description}
+    form=EditClientProfileForm(initial=data)
+    
+    if(request.method=='POST'):
+        if (form.is_valid()):
+            #save the information in the form to variables
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
+            description = form.cleaned_data['description']
+
+            clientObj.email = email
+            clientObj.phone = phone
+            clientObj.address = address
+            clientObj.description = description
+            clientObj.save();
+        
+    #editclient.html posts to this same page and then this view will redirect
+    return render(request, 'account/editclient.html', {'form': form})

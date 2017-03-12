@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client Home</title>
+    <title>Edit Client Profile</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,8 +25,9 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
-    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
+    <link href="{% static 'css/editclient.css' %}"
+    rel="stylesheet">
+    
 </head>
     
 <body id="page-top" class="index">  
@@ -39,7 +40,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="clienthome.html">E-clips</a>
+            <a class="navbar-brand page-scroll" href="/">E-clips</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,8 +50,11 @@
                     <a href="help.html">Help</a>
                 </li>
                 <li>
-                    <a href="login.html">Sign Out</a>
+                    <a href="signup.html">Sign Up</a>
                 </li>    
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -58,57 +62,55 @@
     <!-- /.container-fluid -->
     </nav>
     
-    <section id="signup">
-        <div class="container text-center">    
+
+    {% if form.errors %}
+    <p style="color: red;">
+        Please correct the error{{ form.errors|pluralize }} below.
+    </p>
+    {% endif %}
+
+
+    <form role="form" action="" method="post">
+    {% csrf_token %}
+
+    <section id="editclientprofile">
+        <div class="container">
             <div class="row">
-                <div class="col-sm-3 well">
-                    <div class="well">
-                        <p><a href="clienthome.html">My Profile</a></p>
-                        <img src="http://betterpropertiesauburn.com/wp-content/uploads/2015/11/ad516503a11cd5ca435acc9bb6523536-1.png" class="img-circle" height="100" width="100" alt="Avatar">
-                    </div>
-                    <p><a href="editclient.html">Edit Profile</a></p>
-                    <p><a href="#">Link</a></p>
-                    <p><a href="#">Link</a></p>
-                </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form.description.errors }}
+                            <label>Description :</label>
+                            <br>{{ form.description }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label>Email Address: </label>
+                            <br>{{ form.email }}
+                        </div>
 
-
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel panel-default text-left">
-                                <div class="panel-body" style="text-align:center"> 
-                                    <h3 class="section-heading">Recent Appointments</h3>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <img src="" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            {{ form.address.errors }}
+                            <label>Address: </label>
+                            <br>{{ form.address }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label>Phone Number: </label>
+                            <br>{{ form.phone }}
+                        </div>
+                            
+                        <div class="clearfix"></div>
+                        <div class="col-md-12 text-center">
+                            <div id="success"></div>
+                            <button onclick="clickFinish()" type="submit" class="btn btn-xl" >Finish</button>
                         </div>
                     </div>
-                    <div class="panel panel-default text-left">
-                        <div class="panel-body" style="text-align:center">
-                            <h3 class="section-heading">Recent Comments</h3>
-                        </div>
-                    </div>  
-
-                    {% if client%}
-                    <div class="panel panel-default text-left">
-                        <div class="panel-body" style="text-align:center">
-                            <h3 class="section-heading">INFO</h3>
-                            <p>
-                                Client First Name:{{client.firstName}}<br>
-                                Client Last Name:{{client.lastName}}
-
-                            </p>
-                        </div>
-                    </div>   
-                    {%  endif%}   
-                </div>
             </div>
-        </div>
-    </section>
+        </div>    
+    </section>   
+</form> 
     
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -126,4 +128,11 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
     </body>
+    
+     <script>
+        function clickFinish() {
+           window.location="clienthome.html";
+        }
+    </script>
+    
 </html>   
