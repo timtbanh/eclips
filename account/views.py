@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm, EditClientProfileForm
+from .forms import SignupForm, EditClientForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
@@ -146,10 +146,17 @@ def clientprofile(request, clientEmail):
 
 def editclient(request, clientEmail):
     clientObj = Client.objects.get(email=clientEmail)
-    data={'email':clientObj.email,'phone':clientObj.phone,'address':clientObj.address,'description':clientObj.description}
-    form=EditClientProfileForm(initial=data)
+    
+    data = {
+        'email':clientObj.email,
+        'phone':clientObj.phone,
+        'address':clientObj.address,
+        'description':clientObj.description
+    }
+    form = EditClientForm(initial = data)
     
     if(request.method=='POST'):
+        form = EditClientForm(data=request.POST)   # instance of EditClientForm
         if (form.is_valid()):
             #save the information in the form to variables
             email = form.cleaned_data['email']
@@ -162,6 +169,8 @@ def editclient(request, clientEmail):
             clientObj.address = address
             clientObj.description = description
             clientObj.save();
-        
+            
+            return HttpResponseRedirect('clientprofile.html')
+
     #editclient.html posts to this same page and then this view will redirect
     return render(request, 'account/editclient.html', {'form': form})
