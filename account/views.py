@@ -186,3 +186,5 @@ def fakeclienthome(request):
     return render(request, "account/fakeclienthome.html")
 def fakeclientprofile(request):
     return render(request, "account/fakeclientprofile.html")
+def fakebarberprofile(request):
+    return render(request, "account/fakebarberprofile.html")

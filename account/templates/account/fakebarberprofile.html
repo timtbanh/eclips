@@ -1,0 +1,224 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Barber Profile</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/barberhome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
+</head>
+    
+<body id="page-top" class="index">   
+    
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="barberhome.html">E-clips</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="help.html">Help</a>
+                </li>
+                <li>
+                    <a href="login.html">Sign Out</a>
+                </li>    
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+    </nav>
+    
+    <section id="barberprofile">
+        <div class="container text-center">    
+            <div class="row">
+                <div class="col-sm-3 well">
+                    <div class="well">
+                        <h4>Justin No</h4>
+                        <img src="../../static/img/justin.jpg" class="img-circle" height="200" width="200" alt="Avatar">
+                        <p><br><b>Location:</b><br>4678 Genesse Ave, San Diego CA 92122<p>
+                    </div>
+                    <div class="well">
+                        <p><a href="#">Services</a></p>
+                        <p>
+                            <span class="label label-default">Lineups</span>
+                            <span class="label label-success">Fades</span>
+                            <span class="label label-info">Combovers</span>
+                            <span class="label label-warning">Undercuts</span>
+                            <span class="label label-danger">Pompadours</span>
+                        </p>
+                    </div>
+                    <div class ="well">
+                        <h3 class="section-heading">Description</h3>
+                        <p>Hey, what's up yall? I'm Justin, but the homies call me JNo. I've been cutting hair for about five years now. Feel free to hit me up for a fresh cut! Peace.
+                        </p>
+                    </div>
+                    <div class="well">
+                        <h3 class="section-heading">Contact Info</h3>
+                        <p><b>Email:</b><br>
+                            jno@email.com<br>
+                            <b>Phone Number:</b>
+                            <br>(310)869-9737<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default text-left">
+                                <div class="panel-body">
+                                    <p><b>Status:</b> Taking Appointments</p>
+                                    <p><b>Price:</b> $15</p>
+                                    <p><b>Barber Rating:</b></p>
+                                    <span class="starRating">
+                                        <input id="rating5" type="radio" name="rating" value="5">
+                                        <label for="rating5">5</label>
+                                        <input id="rating4" type="radio" name="rating" value="4">
+                                        <label for="rating4">4</label>
+                                        <input id="rating3" type="radio" name="rating" value="3">
+                                        <label for="rating3">3</label>
+                                        <input id="rating2" type="radio" name="rating" value="2">
+                                        <label for="rating2">2</label>
+                                        <input id="rating1" type="radio" name="rating" value="1">
+                                        <label for="rating1">1</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="row" style="text-align:center">
+                                    <h3 class="section-heading">Gallery</h3>
+                                </div>
+                                <div class="col-sm-3">
+                                    <img src="../../static/img/Pompadour1.jpg" height=175px width =175px alt="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <img src="../../static/img/Low-Fade-Comb-Over.jpg" height=175px width =175px alt="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <img src="../../static/img/undercut.jpg" height=175px width =175px alt="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <img src="../../static/img/Fade1.jpg" height=175px width =175px alt="">
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                       
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row" style="text-align:center">
+                                
+                                    <h3 class="section-heading">Recent Comments</h3>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Danny Phantom</p>
+                                        <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>Excellent Haircut! 10/10 would recommend!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Jemes Roe</p>
+                                        <!--<img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>WORST HAIRCUT OF MY LIFE!! DON'T GET YOUR HAIRCUT HERE. WILL REGRET IT!!!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Booby Smurda</p>
+                                        <!-- <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>Unforgettable experience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Aubrey Graham</p>
+                                        <!--<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p>This is my favorite barber of all time. He does a great job with combovers and fades all for a great price. 10/10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                     
+                </div>
+              
+            </div>
+        </div>
+    </section>
+    
+    <!-- jQuery -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'js/contact_me.js' %}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'js/agency.min.js' %}"></script>
+    </body>
+</html>   
