@@ -179,8 +179,8 @@ def editclient(request, clientEmail):
     #editclient.html posts to this same page and then this view will redirect
     return render(request, 'account/editclient.html', {'form': form})
 
-
-
+def makeappointment(request, barberEmail)
+    return render(request, 'account/makeappointment.html')
 
 def fakeclienthome(request):
     return render(request, "account/fakeclienthome.html")
