@@ -32,7 +32,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/src/js/bootstrap-datetimepicker.js"></script>
 
@@ -77,22 +77,26 @@
     </div>
     <!-- /.container-fluid -->
     </nav>
- 
-     <form role="form" action="" method="post">
+     <form role="form" action="../fakeclienthome.html" method="post">
     {% csrf_token %}
 
     <section id="signup">
-        <div class="container">
-            <div class="row">
 
-                <div class="container">
+        <div class="container">
+            <h3> Schedule an Appointment</h3>
+
+            <div class="row" style="margin:20px 0px;">
+
+                <h5 style="margin:10px 0px;"> Select a time for the appointment </h5>
+                <!-- calendar insert jquery -->
+                <div class="container" style="  ">
                     <div class="row">
                         <div class='col-sm-6'>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' class="form-control" />
                                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        Time and Date &nbsp;<span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                             </div>
@@ -100,8 +104,24 @@
                         
                     </div>
                 </div>
-                <!--
 
+                <div>
+                    <h5> Select a location for the appointment </h5>
+                    <input type="radio" name="location" value="barberHouse" checked> Barber's House &nbsp;
+                    (4444 Genessee Avenue)
+
+                    <br><input type="radio" name="location" value="clientHouse"> Client's House &nbsp;
+                    (4231 Nobel Drive)
+                </div>
+           
+
+                <div class="col-md-12 text-center">
+                    <div id="success"></div>
+                    <button  type="submit" class="btn btn-xl" >Schedule Appointment</button>
+                </div>
+            
+
+                <!-- form stuff
                     <div class="col-md-12">
 
                         <p>{{ form.non_field_errors }}</p>
