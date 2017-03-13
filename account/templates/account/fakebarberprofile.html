@@ -25,7 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/barberhome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
     <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
 </head>
     
@@ -96,21 +96,27 @@
                         <div class="col-sm-12">
                             <div class="panel panel-default text-left">
                                 <div class="panel-body">
-                                    <p><b>Status:</b> Taking Appointments</p>
-                                    <p><b>Price:</b> $15</p>
-                                    <p><b>Barber Rating:</b></p>
-                                    <span class="starRating">
-                                        <input id="rating5" type="radio" name="rating" value="5">
-                                        <label for="rating5">5</label>
-                                        <input id="rating4" type="radio" name="rating" value="4">
-                                        <label for="rating4">4</label>
-                                        <input id="rating3" type="radio" name="rating" value="3">
-                                        <label for="rating3">3</label>
-                                        <input id="rating2" type="radio" name="rating" value="2">
-                                        <label for="rating2">2</label>
-                                        <input id="rating1" type="radio" name="rating" value="1">
-                                        <label for="rating1">1</label>
-                                    </span>
+                                    <div class="col-sm-6">
+                                        <p><b>Status:</b> Taking Appointments</p>
+                                        <p><b>Price:</b> $15</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><b>Barber Rating:</b>
+                                        <span class="starRating">
+                                            <input id="rating5" type="radio" name="rating" value="5">
+                                            <label for="rating5">5</label>
+                                            <input id="rating4" type="radio" name="rating" value="4">
+                                            <label for="rating4">4</label>
+                                            <input id="rating3" type="radio" name="rating" value="3">
+                                            <label for="rating3">3</label>
+                                            <input id="rating2" type="radio" name="rating" value="2">
+                                            <label for="rating2">2</label>
+                                            <input id="rating1" type="radio" name="rating" value="1">
+                                            <label for="rating1">1</label>
+                                        </span>
+                                        </p>
+                                        <p><button type="submit" class="btn btn-m">Book Appointment</button></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
