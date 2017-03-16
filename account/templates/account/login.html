@@ -63,27 +63,43 @@
     <section id="login">
         <div class="container">
             <div class="row">
-                <form name="loginform" id="loginForm">
+                <form name="loginform" id="loginForm" method="post" role="form">
+                {% csrf_token %}
                     <div class="col-md-12">
-                    
-                        <label for="email">Email</label>
+                        <p>{{ form.non_field_errors }}</p>
+                        <label>CHECK ONE ONLY:</label>
+
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email.">
+                            {{ form.password.errors }}
+                            {% for radio in form.userType %}
+                            <label class="switch">
+                                {{radio}}
+                            </label>
+                            {% endfor %}
                         </div>
-                        <label for="password">Password</label>
+
+                        {{ form.email.errors }}
+                        <label for="{{ form.email.id_for_label }}">Email</label>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password.">
+                            {{ form.email }}
+                            <!-- <input type="text" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email."> -->
+                        </div>
+                        {{ form.password.errors }}
+                        <label for="{{ form.password.id_for_label }}">Password</label>
+                        <div class="form-group">
+                            {{ form.password }}
+                            <!-- <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password."> -->
                         </div>
                         <div class="clearfix"></div>
                         <div style="text-align: center;">
                         <div class="col-xs-5 text-right">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-m" onclick="barberhome.html">LOGIN</button>
+                            <button type="submit" class="btn btn-m" onclick="">LOGIN</button>
                         </div>
-                        <div class="col-xs-7 text-left">
+                        <!-- <div class="col-xs-7 text-left">
                             <div id="forgot"></div>
                             <button type="forgotpw" class="btn btn-m">FORGOT PASSWORD</button>
-                        </div>
+                         </div>-->
                     </div>
                     </div>
                 </form>
