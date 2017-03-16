@@ -1,13 +1,8 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-<<<<<<< HEAD
-from .forms import SignupForm, EditClientForm, EditBarberForm
-=======
+from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import SignupForm, EditClientForm, BarberInfoForm, LoginForm
->>>>>>> 8b5c88cb6bd377eeb34be213e301b1194c5ccab9
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
@@ -78,12 +73,7 @@ def signup(request):
                     phone=phone,
                     address=address)
                 barberObj.save()    #save to database this new barber
-<<<<<<< HEAD
                 outURL = '{0}/{1}'.format(email,'barberhome.html')
-=======
-                # login(request, barberObj)
-                outURL = '{0}/{1}'.format(email,'barbercreation.html')
->>>>>>> 8b5c88cb6bd377eeb34be213e301b1194c5ccab9
                 return HttpResponseRedirect(outURL)
 
             elif(userType == 'selectClient'):
@@ -95,7 +85,6 @@ def signup(request):
                     phone=phone,
                     address=address)
                 clientObj.save()    #save this new client to the database
-                # login(request, clientObj)
                 outURL = '{0}/{1}'.format(email,'clienthome.html')
                 return HttpResponseRedirect(outURL)
     else:
