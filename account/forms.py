@@ -10,12 +10,22 @@ class SignupForm(forms.Form):
         ('selectClient', 'I am a Client')]
 
     userType = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
-    firstName = forms.CharField()
-    lastName = forms.CharField()
-    email = forms.EmailField()
-    address = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput())
-    phone = forms.CharField()
+    firstName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Joe', 'size': 40}))
+    lastName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Doe', 'size': 40}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'name@example.com', 'size': 40}))
+    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '123 Street, San Diego, CA 92122', 'size': 40}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'size': 40}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '(800) 123-4567', 'size': 40}))
+
+class LoginForm(forms.Form):
+    # coices used for the radio button
+    CHOICES = [
+        ('selectBarber', 'Barber'),
+        ('selectClient', 'Client')]
+
+    userType = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'name@example.com', 'size': 40}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'size': 40}))
     
 class BarberInfoForm(forms.Form):
 
