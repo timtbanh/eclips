@@ -4,7 +4,6 @@ from .forms import SignupForm, EditClientForm, BarberInfoForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
-
 #   helper function to save all client info in one object
 def getClient(clientObj):
     return {
@@ -155,27 +154,28 @@ def editclient(request, clientEmail):
         'email':clientObj.email,
         'phone':clientObj.phone,
         'address':clientObj.address,
-        'description':clientObj.description
+        'description':clientObj.description,
+        'profilePic':clientObj.profilePic
     }
     form = EditClientForm(initial = data)
     
     if(request.method=='POST'):
-        form = EditClientForm(data=request.POST)   # instance of EditClientForm
+        form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
         if (form.is_valid()):
             #save the information in the form to variables
             email = form.cleaned_data['email']
             phone = form.cleaned_data['phone']
             address = form.cleaned_data['address']
             description = form.cleaned_data['description']
-
+            profilePic = form.cleaned_data['profilePic']
+            
             clientObj.email = email
             clientObj.phone = phone
             clientObj.address = address
             clientObj.description = description
-            clientObj.save();
-            
+            clientObj.profilePic = profilePic
+            clientObj.save()
             return HttpResponseRedirect('clientprofile.html')
-
     #editclient.html posts to this same page and then this view will redirect
     return render(request, 'account/editclient.html', {'form': form})
 

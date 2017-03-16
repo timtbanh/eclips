@@ -64,12 +64,11 @@
                 <div class="col-sm-3 well">
                     <div class="well">
                         <p><a href="clienthome.html">{{client.firstName}} {{client.lastName}}</a></p>
-                        <img src="http://betterpropertiesauburn.com/wp-content/uploads/2015/11/ad516503a11cd5ca435acc9bb6523536-1.png" class="img-circle" height="100" width="100" alt="Avatar">
+                        <img src= "{{ client.profilePic.url }}" class="img-circle" height="100" width="100">
                     </div>
                     <p><a href="clientprofile.html">My Profile</a></p>
                     <p><a href="editclient.html">Edit Profile</a></p>
                 </div>
-
 
                 <div class="col-sm-9">
                     <div class="row">
@@ -92,7 +91,6 @@
                         </div>
                     </div>  
 
-                    {% if client%}
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
                             <h3 class="section-heading">INFORMATION</h3>
@@ -100,12 +98,10 @@
                             <p>
                                 Client First Name:{{client.firstName}}<br>
                                 Client Last Name:{{client.lastName}}
-
                             </p>
 -->
                         </div>
                     </div>   
-                    {%  endif%}   
                 </div>
             </div>
         </div>

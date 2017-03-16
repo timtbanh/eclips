@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
-
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from datetime import datetime#
-
         
 @python_2_unicode_compatible
 class Barber(models.Model):
@@ -20,7 +19,7 @@ class Barber(models.Model):
     description = models.TextField(null=True) #other wanted information
     
     avgRating = models.FloatField(null=True)#averaged Rating
-    profilePic = models.CharField(max_length=200, null=True)#link to prof pic
+    profilePic = models.ImageField(null=True)#link to prof pic
     def __str__(self):
         return 'Barber Name: %s %s' % (self.firstName, self.lastName)
 
@@ -33,8 +32,13 @@ class Client(models.Model):
     phone = models.CharField(max_length=200)
     address = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True) #other wanted information
-    avgRating = models.FloatField(null=True)#averaged Rating
-    profilePic = models.CharField(max_length=200, null=True)#link to prof pic
+    avgRating = models.FloatField(null=True)#averaged Rating 
+    profilePic = models.FileField(null=True, blank=True)
+#                    height_field="height_field",
+#                    width_field="width_field")
+#    height_field = models.IntegerField(default=0)
+#    width_field = models.IntegerField(default=0)
+    
     def __str__(self):
         return 'Client Name: %s %s' % (self.firstName, self.lastName)
 

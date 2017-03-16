@@ -25,7 +25,6 @@ class BarberInfoForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField()
     
-
 class AppointmentForm(forms.Form):
     # choices for location of the barber
     CHOICES = [
@@ -37,9 +36,10 @@ class AppointmentForm(forms.Form):
     # client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
 class EditClientForm(forms.Form):
-    description = forms.CharField(widget=forms.Textarea)
+    firstName = forms.CharField()
+    lastName = forms.CharField()
     email = forms.EmailField()
-    address = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
     phone = forms.CharField()
-
-    
+    address = forms.CharField()
+    profilePic = forms.FileField()
