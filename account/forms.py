@@ -17,14 +17,6 @@ class SignupForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
     phone = forms.CharField()
     
-class BarberInfoForm(forms.Form):
-
-    # what else should be included here? PRICES, SCHEDULE, WALKIN, DRIVE TO
-    description = forms.CharField()
-    price = forms.CharField()
-    walkin = forms.CharField()
-    schedule = forms.CharField()
-    
 
 class AppointmentForm(forms.Form):
     # choices for location of the barber
@@ -42,4 +34,13 @@ class EditClientForm(forms.Form):
     address = forms.CharField()
     phone = forms.CharField()
 
+class EditBarberForm(forms.Form):
+    description = forms.CharField(widget=forms.Textarea)
+    email = forms.EmailField()
+    address = forms.CharField()
+    phone = forms.CharField()
+    price = forms.CharField()
+    walkin = forms.CharField()
+    schedule = forms.CharField(widget=forms.Textarea)
+    profilePic = forms.CharField()
     

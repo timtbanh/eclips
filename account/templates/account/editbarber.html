@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Barber Creation</title>
+    <title>Edit Barber Profile</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/barberCreation.css' %}"
+    <link href="{% static 'css/editbarber.css' %}"
     rel="stylesheet">
     
 </head>
@@ -40,7 +40,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="/">E-clips</a>
+            <a class="navbar-brand page-scroll" href="barberhome.html">E-clips</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,7 +50,10 @@
                     <a href="help.html">Help</a>
                 </li>
                 <li>
-                    <a href="login.html">Sign Up</a>
+                    <a href="signup.html">Sign Up</a>
+                </li>    
+                <li>
+                    <a href="login.html">Login</a>
                 </li>
             </ul>
         </div>
@@ -58,64 +61,77 @@
     </div>
     <!-- /.container-fluid -->
     </nav>
-        
-    <section id="barberAccountCreation">
-        <div class="container">
-            <div class="row">
-                <form role="form" action="" method="post" id="signupForm">
-                {% csrf_token %}
+    
 
+    {% if form.errors %}
+    <p style="color: red;">
+        Please correct the error{{ form.errors|pluralize }} below.
+    </p>
+    {% endif %}
+
+
+    <form role="form" action="" method="post">
+    {% csrf_token %}
+
+        <section id="editbarberprofile">
+            <div class="container">
+                <div class="row">
                     <div class="col-md-12">
-                        <p>{{ form.non_field_errors }}</p>
-                        
-                        <!-- List of skills 
-                            Description of themselves?
-                            Profile picture?
-                            can't be a form, needs to be larger
-                            need barberedit/clientedit
-                        -->
-                        
-<!--                    USE THIS INSTEAD OF FORMS
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
--->
-                        
                         <div class="form-group">
                             {{ form.description.errors }}
-                            <label placeholder="" for="{{ form.description.id_for_label }}">Describe your skills </label>
-                            {{ form.description }}
+                            <label>Description :</label>
+                            <br>{{ form.description }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label>Email Address: </label>
+                            <br>{{ form.email }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.address.errors }}
+                            <label>Address: </label>
+                            <br>{{ form.address }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label>Phone Number: </label>
+                            <br>{{ form.phone }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.price.errors }}
-                            <label placeholder="" for="{{ form.price.id_for_label }}">List of prices for all services: </label>
-                            {{ form.price }}
+                            <label>Price: </label>
+                            <br>{{ form.price }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.walkin.errors }}
-                            <label placeholder="At home, at shop, at customer, etc." for="{{ form.walkin.id_for_label }}">Where do you cut hair? </label>
-                            {{ form.walkin }}
+                            <label>Walkin: </label>
+                            <br>{{ form.walkin }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.schedule.errors }}
-                            <label placeholder="Ex: Mornings on Monday - Friday" for="{{ form.schedule.id_for_label }}">Your Schedule: </label>
-                            {{ form.schedule }}
+                            <label>Schedule: </label>
+                            <br>{{ form.schedule }}
                         </div>
+                        # edit profile pic should be here , left undone
+                        until django database updated to store it.
                         
+
                         <div class="clearfix"></div>
                         <div class="col-md-12 text-center">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Create Profile</button>
+                            <button onclick="clickFinish()" type="submit" class="btn btn-xl" >Finish</button>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>    
-    </section>   
+                </div>
+            </div>    
+        </section>   
+    </form> 
     
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -133,4 +149,11 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
     </body>
-</html>   
+    
+     <script>
+        function clickFinish() {
+           window.location="barberhome.html";
+        }
+    </script>
+    
+</html>  

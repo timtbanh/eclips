@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm, EditClientForm, BarberInfoForm
+from .forms import SignupForm, EditClientForm, EditBarberForm
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
 
@@ -67,7 +67,7 @@ def signup(request):
                     phone=phone,
                     address=address)
                 barberObj.save()    #save to database this new barber
-                outURL = '{0}/{1}'.format(email,'barbercreation.html')
+                outURL = '{0}/{1}'.format(email,'barberhome.html')
                 return HttpResponseRedirect(outURL)
 
             elif(userType == 'selectClient'):
@@ -99,35 +99,6 @@ def barberhome(request, barberEmail):
     # send the information about the particular barber with matching
     # email to barberhome.html
     return render(request, "account/barberhome.html", {'barber': returnBarber})
-
-def barbercreation(request, barberEmail):
-    
-    if (request.method == 'POST'):
-        form = BarberInfoForm(data=request.POST)   # instance of BarberCreationForm
-        print('form is ' + str(form.is_valid()))
-        if (form.is_valid()):
-            #save the information in the form to variables
-            description = form.cleaned_data['description']
-            price = form.cleaned_data['price']
-            walkin = form.cleaned_data['walkin']
-            schedule = form.cleaned_data['schedule']
-        
-            # .filter returns a queryset object
-            barberRow = Barber.objects.filter(email=barberEmail)
-            if (barberRow.exists()):
-                barberRow.update(
-                    description=description,
-                    price=price,
-                    walkin=walkin,
-                    schedule=schedule)
-
-                outURL = 'barberhome.html'
-
-                return HttpResponseRedirect(outURL)
-    else:
-        form = BarberInfoForm()
-        
-    return render(request, "account/barbercreation.html", {'form': form})
 
 def clienthome(request, clientEmail):
     #filter through the client table by matching emails
@@ -178,6 +149,49 @@ def editclient(request, clientEmail):
 
     #editclient.html posts to this same page and then this view will redirect
     return render(request, 'account/editclient.html', {'form': form})
+def editbarber(request, barberEmail):
+    barberObj = Barber.objects.get(email=barberEmail)
+    
+    data = {
+        'email':barberObj.email,
+        'phone':barberObj.phone,
+        'address':barberObj.address,
+        'description':barberObj.description,
+        'price':barberObj.price,
+        'walkin':barberObj.walkin,
+        'schedule':barberObj.schedule,
+        'avgRating':barberObj.avgRating,
+        'profilePic':barberObj.profilePic
+    }
+    form = EditBarberForm(initial = data)
+    
+    if(request.method=='POST'):
+        form = EditBarberForm(data=request.POST)   # instance of EditBarberForm
+        if (form.is_valid()):
+            #save the information in the form to variables
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
+            description = form.cleaned_data['description']
+            price = form.cleaned_data['price']
+            walkin = form.cleaned_data['walkin']
+            schedule = form.cleaned_data['schedule']
+            profilePic = form.cleaned_data['profilePic']
+
+            barberObj.email = email
+            barberObj.phone = phone
+            barberObj.address = address
+            barberObj.description = description
+            barberObj.price = price
+            barberObj.walkin = walkin
+            barberObj.schedule = schedule
+            barberObj.profilePic = profilePic
+            barberObj.save();
+            
+            return HttpResponseRedirect('barberprofile.html')
+
+    #editclient.html posts to this same page and then this view will redirect
+    return render(request, 'account/editbarber.html', {'form': form})
 
 def makeappointment(request):
     return render(request, 'account/makeappointment.html')
