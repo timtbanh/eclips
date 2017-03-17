@@ -195,32 +195,30 @@ def editclient(request, clientEmail):
         try:
             clientObj = Client.objects.get(email=clientEmail)
             data = {
-                'email':clientObj.email,
+                'picture':clientObj.profilePic,
                 'phone':clientObj.phone,
                 'address':clientObj.address,
                 'description':clientObj.description
             }
             form = EditClientForm(initial = data)
             
-            
             if(request.method=='POST'):
-                form = EditClientForm(data=request.POST)   # instance of EditClientForm
+                form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
                 if (form.is_valid()):
                     #save the information in the form to variables
-                    email = form.cleaned_data['email']
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
+                    picture = form.cleaned_data['picture']
 
-                    clientObj.email = email
                     clientObj.phone = phone
                     clientObj.address = address
                     clientObj.description = description
+                    clientObj.profilePic = picture
                     clientObj.save();
                     
                     return HttpResponseRedirect('clientprofile.html')
             return render(request, 'account/editclient.html', {'form': form})
-
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')

@@ -44,7 +44,7 @@ class EditClientForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     phone = forms.CharField()
     address = forms.CharField()
-    profilePic = forms.FileField()
+    profilePic = forms.ImageField()
 
 class EditBarberForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
