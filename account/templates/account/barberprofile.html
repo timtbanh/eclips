@@ -62,27 +62,71 @@
         <div class="container text-center"> 
             <div class="row">
                 <div class="col-sm-3 well">
+                    <a href="barberhome.html" style="color:black">
                     <div class="well">
-                        <p><a href="barberhome.html">My Profile</a></p>
+                        <h4>{{barber.firstName}} {{barber.lastName}}</h4>
                         {% if barber.profilePic == "" %}
                             <img src="../../static/img/no-img.png" class="img-circle" height="100" width="100">
                         {% else %}
                             <img src="{{ barber.profilePic }}" class="img-circle" height="100" width="100">
                         {% endif %}
+                        <p><br><b>Address:</b><br>{{barber.address}}</p>
                     </div>
-                    <div class ="well">
-                        <p><a href="#">Contact</a></p>
+                    </a>
+                    <div class="well">
+                        <h4>Services</h4>
                         <p>
+                            <span class="label label-default">Lineups</span>
+                            <span class="label label-success">Fades</span>
+                            <span class="label label-info">Combovers</span>
+                            <span class="label label-warning">Undercuts</span>
+                            <span class="label label-danger">Pompadours</span>
+                        </p>
                     </div>
+                    <p><a href="barberhome.html" style="color:black">My Home Page</a></p>
+                    <p><a href="editbarber.html" style="color:black">Edit Profile</a></p>
                 </div> 
                  <div class="col-sm-9">
+                 <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default text-left">
+                                <div class="panel-body">
+                                <header id="status">
+                                    <h4 contenteditable="true">Status: </h4>
+                                    <span>Taking Appointments</span>
+                                </div>
+                                </header>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default text-left">
+                                <div class="panel-body" style="text-align:center"> 
+                                    <h3 class="section-heading">Description</h3>
+                                    <p>{{barber.description}}<br></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">    
+                            <div class="panel panel-default text-left">
+                                <div class="panel-body" style="text-align:center">
+                                    <h3 class="section-heading">Contact Info</h3>
+                                    <p>
+                                        <b>Phone Number: </b>{{barber.phone}} <br>
+                                        <b>Email: </b>{{barber.email}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-default text-center">
-                                <div class="panel-body">
-                                    <p style="font-size:40px">
-                                        Gallery
-                                    </p>
+                                <div class="panel-body" style="text-align:center">
+                                    <h3 class="section-heading">Gallery</h3>
                                 </div>
                             </div>
                         </div>

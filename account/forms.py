@@ -53,4 +53,3 @@ class EditBarberForm(forms.Form):
     walkin = forms.CharField()
     schedule = forms.CharField(widget=forms.Textarea)
     #profilePic = forms.CharField()
-    
