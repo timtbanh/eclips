@@ -70,49 +70,43 @@
     <form role="form" action="" method="post">
     {% csrf_token %}
 
-        <section id="editbarberprofile">
+        <section id="editbarber">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ form.description.errors }}
-                            <label>Description :</label>
+                            <label for="{{ form.descripition.id_for_label }}">Description :</label>
                             <br>{{ form.description }}
                         </div>
 
                         <div class="form-group">
-                            {{ form.email.errors }}
-                            <label>Email Address: </label>
-                            <br>{{ form.email }}
-                        </div>
-
-                        <div class="form-group">
                             {{ form.address.errors }}
-                            <label>Address: </label>
+                            <label for="{{ form.address.id_for_label }}">Address: </label>
                             <br>{{ form.address }}
                         </div>
 
                         <div class="form-group">
                             {{ form.phone.errors }}
-                            <label>Phone Number: </label>
+                            <label for="{{ form.phoneNumber.id_for_label }}">Phone Number: </label>
                             <br>{{ form.phone }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.price.errors }}
-                            <label>Price: </label>
+                            <label for="{{ form.price.id_for_label }}">Price: </label>
                             <br>{{ form.price }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.walkin.errors }}
-                            <label>Walkin: </label>
+                            <label for="{{ form.walkin.id_for_label }}">Walkin: </label>
                             <br>{{ form.walkin }}
                         </div>
                         
                         <div class="form-group">
                             {{ form.schedule.errors }}
-                            <label>Schedule: </label>
+                            <label for="{{ form.schedule.id_for_label }}">Schedule: </label>
                             <br>{{ form.schedule }}
                         </div>
                         # edit profile pic should be here , left undone
@@ -122,7 +116,7 @@
                         <div class="clearfix"></div>
                         <div class="col-md-12 text-center">
                             <div id="success"></div>
-                            <button onclick="clickFinish()" type="submit" class="btn btn-xl" >Finish</button>
+                            <button onclick="" type="submit" class="btn btn-xl" >Finish</button>
                         </div>
                     </div>
                 </div>

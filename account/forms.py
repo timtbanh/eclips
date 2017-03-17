@@ -38,21 +38,19 @@ class AppointmentForm(forms.Form):
     # client = models.ForeignKey(Client, on_delete=models.CASCADE)
     
 class EditClientForm(forms.Form):
-    firstName = forms.CharField()
-    lastName = forms.CharField()
-    email = forms.EmailField()
+    # firstName = forms.CharField()
+    # lastName = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     phone = forms.CharField()
     address = forms.CharField()
-    profilePic = forms.ImageField()
+    # profilePic = forms.ImageField()
 
 class EditBarberForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
-    email = forms.EmailField()
     address = forms.CharField()
     phone = forms.CharField()
     price = forms.CharField()
     walkin = forms.CharField()
     schedule = forms.CharField(widget=forms.Textarea)
-    profilePic = forms.CharField()
+    #profilePic = forms.CharField()
     
