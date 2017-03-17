@@ -16,7 +16,7 @@ class SignupForm(forms.Form):
     address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '123 Street, San Diego, CA 92122', 'size': 40}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'size': 40}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '(800) 123-4567', 'size': 40}))
-
+    
 class LoginForm(forms.Form):
     # coices used for the radio button
     CHOICES = [
@@ -43,7 +43,7 @@ class EditClientForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     phone = forms.CharField()
     address = forms.CharField()
-    # profilePic = forms.ImageField()
+    profilePic = forms.ImageField()
 
 class EditBarberForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)

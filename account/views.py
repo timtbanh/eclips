@@ -1,10 +1,16 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.images import ImageFile
+from django.core.files.base import File
 from .models import Barber, Client, Appointment, Review
-from django.core.mail import send_mail
+from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm
 import hashlib   # password hasher
+
+def update_filename(instance, filename):
+    path = "upload/path/"
+    format = instance.userid + instance.file_extension
+    return os.path.join(path, format)
 
 #   helper function to save all client info in one object
 def getClient(clientObj):
@@ -207,31 +213,35 @@ def editclient(request, clientEmail):
                 'address':clientObj.address,
                 'description':clientObj.description
             }
-            #file_data = {'profilePic': SimpleUploadedFile()}
 
-            form = EditClientForm(initial = data)
-            
-            
+            form = EditClientForm(data)
+        
             if(request.method=='POST'):
-                form = EditClientForm(data=request.POST)   # instance of EditClientForm
+                form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
                 if (form.is_valid()):
+
+                    # f = request.FILES['profilePic']
+                    # profilePic = File(f)
+                    # profilePic.save(update_filename(profilePic, request.FILES['profilePic']), true)
+
                     #save the information in the form to variables
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
-                    # profilePic
+                    # profilePic = form.cleaned_data['profilePic']
 
+                    clientObj.profilePic=request.FILES['profilePic']
                     clientObj.phone = phone
                     clientObj.address = address
                     clientObj.description = description
-                    clientObj.save();
+                    # clientObj.profilePic = File(profilePic)
+                    clientObj.save()
                     
                     return HttpResponseRedirect('clientprofile.html')
 
             else:
                 form = EditClientForm(initial = data)
             return render(request, 'account/editclient.html', {'form': form})
-
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
