@@ -33,12 +33,7 @@ class Client(models.Model):
     address = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True) #other wanted information
     avgRating = models.FloatField(null=True)#averaged Rating 
-    profilePic = models.FileField(null=True, blank=True)
-#                    height_field="height_field",
-#                    width_field="width_field")
-#    height_field = models.IntegerField(default=0)
-#    width_field = models.IntegerField(default=0)
-    
+    profilePic = models.ImageField(upload_to="clients", null=True, blank=False)
     def __str__(self):
         return 'Client Name: %s %s' % (self.firstName, self.lastName)
 

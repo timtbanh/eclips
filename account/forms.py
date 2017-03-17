@@ -36,7 +36,7 @@ class AppointmentForm(forms.Form):
     address = forms.CharField()
     # barber = forms.ForeignKey(Barber,on_delete=models.CASCADE)
     # client = models.ForeignKey(Client, on_delete=models.CASCADE)
-
+    
 class EditClientForm(forms.Form):
     firstName = forms.CharField()
     lastName = forms.CharField()

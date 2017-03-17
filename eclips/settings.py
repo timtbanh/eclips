@@ -17,8 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -124,9 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-MEDIA_URL = '/media/'
-
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
@@ -134,6 +130,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ( 
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
+MEDIA_ROOT_DIR = 'media'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_URL = '/media/'
 
 # Update database configuration with $DATABASE_URL.
 import dj_database_url

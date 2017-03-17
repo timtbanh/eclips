@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client Profile</title>
+    <title>Find Barber</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,12 +25,12 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/clientprofile.css' %}" rel="stylesheet">
+    <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
     <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
 </head>
     
-    <body id="page-top" class="index"> 
-
+<body id="page-top" class="index">  
+    
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container">
@@ -57,63 +57,24 @@
     </div>
     <!-- /.container-fluid -->
     </nav>
-      
-    <section id ="clientprofile">
-        {% if client %}
-        <div class="container text-center"> 
+    
+    <form role="form" action="../makeappointment.html" method="post">
+    {% csrf_token %}
+        <div class="container">
+            <h3>Find a Barber</h3>
+            
             <div class="row">
-                <div class="col-sm-3 well">
-                    <a href="clienthome.html" style="color:black">
-                    <div class="well">
-                        <!--<p><a href="clientprofile.html">My Profile</a>
-                        </p>-->
-                        <h4>{{client.firstName}} {{client.lastName}}</h4>
-                        <img src="{{ client.profilePic.url }}" class="img-circle"  height="100" width="100">
-                        <p><br><b>Address:</b><br>{{client.address}}</p>
-                    </div>
-                    </a>
-                    <div class ="well">
-                        <!--<h4>Contact Info</h4>
-                        <p><b>Email:</b><br>{{client.email}}<br>
-                        <b>Phone Number:</b><br>{{client.phone}}<br>
-                        </p>-->
-                        <h4>Rating</h4>
-                        <p><b>{{client.avgRating}}/5</b></p>
-                    </div>
-                    <p><a href="clienthome.html" style="color:black">My Home Page</a></p>
-                    <p><a href="editclient.html" style="color:black">Edit Profile</a></p>
-                </div>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel panel-default text-left">
-                                <div class="panel-body" style="text-align:center"> 
-                                    <h3 class="section-heading">Description</h3>
-                                    <p>{{client.description}}<br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">    
-                            <div class="panel panel-default text-left">
-                                <div class="panel-body" style="text-align:center">
-                                    <h3 class="section-heading">Contact Info</h3>
-                                    <p>
-                                        <b>Phone Number: </b>{{client.phone}} <br>
-                                        <b>Email: </b>{{client.email}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h5>Choose a Barber</h5>
             </div>
-        {% endif %}
+            <div class="row">
+                {% for b in Barber.objects.all() %}
+                    {{ b.firstName }} {{ b.lastName }}
+                {% endfor %}
+            </div>
         </div>
-    </section>
-        
-   <!-- jQuery -->
+    </form>
+    
+    <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -129,4 +90,4 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
     </body>
-</html>  
+</html> 

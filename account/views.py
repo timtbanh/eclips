@@ -202,6 +202,7 @@ def editclient(request, clientEmail):
             }
             form = EditClientForm(initial = data)
             
+            
             if(request.method=='POST'):
                 form = EditClientForm(data=request.POST)   # instance of EditClientForm
                 if (form.is_valid()):
@@ -233,7 +234,6 @@ def editbarber(request, barberEmail):
         try:
             barberObj = Barber.objects.get(email=barberEmail)
             data = {
-                'email':barberObj.email,
                 'phone':barberObj.phone,
                 'address':barberObj.address,
                 'description':barberObj.description,
@@ -249,7 +249,6 @@ def editbarber(request, barberEmail):
                 form = EditBarberForm(data=request.POST)   # instance of EditBarberForm
                 if (form.is_valid()):
                     #save the information in the form to variables
-                    email = form.cleaned_data['email']
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
@@ -257,8 +256,7 @@ def editbarber(request, barberEmail):
                     walkin = form.cleaned_data['walkin']
                     schedule = form.cleaned_data['schedule']
                     profilePic = form.cleaned_data['profilePic']
-
-                    barberObj.email = email
+                    
                     barberObj.phone = phone
                     barberObj.address = address
                     barberObj.description = description
@@ -279,6 +277,19 @@ def editbarber(request, barberEmail):
     #editclient.html posts to this same page and then this view will redirect
     # return render(request, 'account/editbarber.html', {'form': form})
 
+def findbarber(request, clientEmail):
+    if (request.session.has_key('email')):
+        email = request.session['email']
+        barber_array = Barber.objects.all()
+        try:
+            clientObj = Client.objects.get(email=clientEmail)
+            form = findabarberform
+            
+            
+            return render(request, 'account/findbarber.html', {'form': form})
+        except ObjectDoesNotExist:
+            pass
+    return HttpResponseRedirect('../login.html')
 
 def makeappointment(request):
     return render(request, 'account/makeappointment.html')
