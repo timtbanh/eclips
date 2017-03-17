@@ -33,7 +33,7 @@ class Client(models.Model):
     address = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True) #other wanted information
     avgRating = models.FloatField(null=True)#averaged Rating 
-    profilePic = models.FileField(null=True, blank=True)
+    profilePic = models.ImageField(null=True, blank=False)
 #                    height_field="height_field",
 #                    width_field="width_field")
 #    height_field = models.IntegerField(default=0)

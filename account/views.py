@@ -1,7 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm
-from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Barber, Client, Appointment, Review
 import hashlib   # password hasher
@@ -72,7 +71,8 @@ def signup(request):
                     phone=phone,
                     address=address)
                 barberObj.save()    #save to database this new barber
-                outURL = '{0}/{1}'.format(email,'barberhome.html')
+                request.session['email'] = email
+                outURL = '{0}/{1}'.format(email,'barberhome.html', {'email': email})
                 return HttpResponseRedirect(outURL)
 
             elif(userType == 'selectClient'):
@@ -84,7 +84,8 @@ def signup(request):
                     phone=phone,
                     address=address)
                 clientObj.save()    #save this new client to the database
-                outURL = '{0}/{1}'.format(email,'clienthome.html')
+                request.session['email'] = email
+                outURL = '{0}/{1}'.format(email,'clienthome.html', {'email': email})
                 return HttpResponseRedirect(outURL)
     else:
         form = SignupForm()
@@ -147,6 +148,9 @@ def login(request):
         return render(request, 'account/login.html', {'form': form})
 
 def help(request):
+    if (request.session.has_key('email')):
+        email = request.session['email']
+        return render(request, "account/help2.html")
     return render(request, "account/help.html")
 
 def barberhome(request, barberEmail):
@@ -177,7 +181,7 @@ def clienthome(request, clientEmail):
     # returnBarber = getBarber(barberObj)
     # return render(request, "account/barberprofile.html", {'barber': returnBarber})
 
-def barberprofile(request):
+def barberprofile(request, barberEmail):
     return render(request, "account/barberprofile.html")
 
 # TODO
@@ -195,37 +199,37 @@ def editclient(request, clientEmail):
         try:
             clientObj = Client.objects.get(email=clientEmail)
             data = {
-                'email':clientObj.email,
                 'phone':clientObj.phone,
                 'address':clientObj.address,
                 'description':clientObj.description
             }
+            #file_data = {'profilePic': SimpleUploadedFile()}
+
             form = EditClientForm(initial = data)
             
             if(request.method=='POST'):
                 form = EditClientForm(data=request.POST)   # instance of EditClientForm
                 if (form.is_valid()):
                     #save the information in the form to variables
-                    email = form.cleaned_data['email']
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
+                    # profilePic
 
-                    clientObj.email = email
                     clientObj.phone = phone
                     clientObj.address = address
                     clientObj.description = description
                     clientObj.save();
                     
                     return HttpResponseRedirect('clientprofile.html')
+
+            else:
+                form = EditClientForm(initial = data)
             return render(request, 'account/editclient.html', {'form': form})
 
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
-
-    #editclient.html posts to this same page and then this view will redirect
-    # return render(request, 'account/editclient.html', {'form': form})
 
 def editbarber(request, barberEmail):
     if (request.session.has_key('email')):
@@ -233,14 +237,12 @@ def editbarber(request, barberEmail):
         try:
             barberObj = Barber.objects.get(email=barberEmail)
             data = {
-                'email':barberObj.email,
                 'phone':barberObj.phone,
                 'address':barberObj.address,
                 'description':barberObj.description,
                 'price':barberObj.price,
                 'walkin':barberObj.walkin,
                 'schedule':barberObj.schedule,
-                'avgRating':barberObj.avgRating,
                 'profilePic':barberObj.profilePic
             }
             form = EditBarberForm(initial = data)
@@ -249,24 +251,32 @@ def editbarber(request, barberEmail):
                 form = EditBarberForm(data=request.POST)   # instance of EditBarberForm
                 if (form.is_valid()):
                     #save the information in the form to variables
-                    email = form.cleaned_data['email']
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
                     price = form.cleaned_data['price']
                     walkin = form.cleaned_data['walkin']
-                    schedule = form.cleaned_data['schedule']
-                    profilePic = form.cleaned_data['profilePic']
+                    schedule = form1.cleaned_data['schedule']
+                    # profilePic = form1.cleaned_data['profilePic']
 
-                    barberObj.email = email
-                    barberObj.phone = phone
-                    barberObj.address = address
-                    barberObj.description = description
-                    barberObj.price = price
-                    barberObj.walkin = walkin
-                    barberObj.schedule = schedule
-                    barberObj.profilePic = profilePic
-                    barberObj.save();
+                    barberRow = Barber.objects.filter(email=barberEmail)
+                    if (barberRow.exists()):
+                        barberRow.update(
+                            phone=phone,
+                            address=address,
+                            description=description,
+                            price=price,
+                            walkin=walkin,
+                            schedule=schedule)
+
+                    # barberObj.phone = phone
+                    # barberObj.address = address
+                    # barberObj.description = description
+                    # barberObj.price = price
+                    # barberObj.walkin = walkin
+                    # barberObj.schedule = schedule
+                    # barberObj.profilePic = profilePic
+                    # barberObj.save();
                     
                     return HttpResponseRedirect('barberprofile.html')
 
@@ -275,10 +285,6 @@ def editbarber(request, barberEmail):
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
-
-    #editclient.html posts to this same page and then this view will redirect
-    # return render(request, 'account/editbarber.html', {'form': form})
-
 
 def makeappointment(request):
     return render(request, 'account/makeappointment.html')
