@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Edit Client Profile</title>
+    <title>Find Barber</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,8 +25,8 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/editclient.css' %}" rel="stylesheet">
-    
+    <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
 </head>
     
 <body id="page-top" class="index">  
@@ -50,7 +50,7 @@
                 </li>
                 <li>
                     <a href="../../..">Log Out</a>
-                </li>
+                </li>    
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -58,53 +58,21 @@
     <!-- /.container-fluid -->
     </nav>
     
-
-    {% if form.errors %}
-    <p style="color: red;">
-        Please correct the error{{ form.errors|pluralize }} below.
-    </p>
-    {% endif %}
-
-
-    <form role="form" method="post" enctype="multipart/form-data">
+    <form role="form" action="../makeappointment.html" method="post">
     {% csrf_token %}
-
-        <section id="editclientprofile">
-            <div class="container">
-                <div class="row">
-                    <h1 style="text-align:center">Edit Your Profile</h1>
-                     <div class="col-md-12">    
-                        <!-- <div class="form-group">
-                            {{ form.profilePic.errors }}
-                            <label>Profile Picture: </label>
-                            <br>{{ form.profilePic }}
-                        </div> -->
-                         <div class="form-group">
-                            {{ form.description.errors }}
-                            <label>Description: </label>
-                            <br>{{ form.description }}
-                        </div>
-                        <div class="form-group">
-                            {{ form.address.errors }}
-                            <label>Address: </label>
-                            <br>{{ form.address }}
-                        </div>
-                        <div class="form-group">
-                            {{ form.phone.errors }}
-                            <label>Phone Number: </label>
-                            <br>{{ form.phone }}
-                        </div>
-
-                        <div class="clearfix"></div>
-                        <div class="col-md-12 text-center">
-                            <div id="success"></div>
-                            <button onclick="" type="submit" class="btn btn-xl" value="Upload">Finish</button>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </section>   
-    </form> 
+        <div class="container">
+            <h3>Find a Barber</h3>
+            
+            <div class="row">
+                <h5>Choose a Barber</h5>
+            </div>
+            <div class="row">
+                {% for b in Barber.objects.all() %}
+                    {{ b.firstName }} {{ b.lastName }}
+                {% endfor %}
+            </div>
+        </div>
+    </form>
     
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -122,11 +90,4 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
     </body>
-    
-     <script>
-        function clickFinish() {
-           window.location="clienthome.html";
-        }
-    </script>
-    
-</html>   
+</html> 

@@ -64,7 +64,11 @@
                 <div class="col-sm-3 well">
                     <div class="well">
                         <p><a href="barberhome.html">My Profile</a></p>
-                        <img src="https://cdn-images-1.medium.com/max/640/1*O5p8rQJCFJYQz9hxTWfIuw.jpeg" class="img-circle" height="100" width="100" alt="Avatar">
+                        {% if barber.profilePic == "" %}
+                            <img src="../../static/img/no-img.png" class="img-circle" height="100" width="100">
+                        {% else %}
+                            <img src="{{ barber.profilePic }}" class="img-circle" height="100" width="100">
+                        {% endif %}
                     </div>
                     <div class="well">
                         <p><a href="#">Your Services</a></p>

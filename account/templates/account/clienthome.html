@@ -58,16 +58,24 @@
     <!-- /.container-fluid -->
     </nav>
     
-    <section id="signup">
+    <section id="clienthome">
+        {% if client %}
         <div class="container text-center">    
             <div class="row">
                 <div class="col-sm-3 well">
+                    <a href="clienthome.html" style="color:black">
                     <div class="well">
-                        <p><a href="clienthome.html">{{client.firstName}} {{client.lastName}}</a></p>
-                        <img src= "http://betterpropertiesauburn.com/wp-content/uploads/2015/11/ad516503a11cd5ca435acc9bb6523536-1.png" class="img-circle" height="100" width="100">
+                        <h4>{{client.firstName}} {{client.lastName}}</h4>      
+                        {% if client.profilePic == "" %}
+                            <img src="../../static/img/no-img.png" class="img-circle" height="100" width="100">
+                        {% else %}
+                            <img src="{{ client.profilePic }}" class="img-circle" height="100" width="100">
+                        {% endif %}
+                        <p><br><b>Address:</b><br>{{client.address}}</p>
                     </div>
-                    <p><a href="clientprofile.html">My Profile</a></p>
-                    <p><a href="editclient.html">Edit Profile</a></p>
+                    </a>    
+                    <p><a href="clientprofile.html" style="color:black">My Profile</a></p>
+                    <p><a href="editclient.html" style="color:black">Edit Profile</a></p>
                 </div>
 
                 <div class="col-sm-9">
@@ -76,11 +84,7 @@
                             <div class="panel panel-default text-left">
                                 <div class="panel-body" style="text-align:center"> 
                                     <h3 class="section-heading">Recent Appointments</h3>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <img src="" alt="">
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -90,20 +94,16 @@
                             <h3 class="section-heading">Recent Comments</h3>
                         </div>
                     </div>  
-
+<!--
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
                             <h3 class="section-heading">INFORMATION</h3>
-<!--
-                            <p>
-                                Client First Name:{{client.firstName}}<br>
-                                Client Last Name:{{client.lastName}}
-                            </p>
--->
                         </div>
                     </div>   
+-->
                 </div>
             </div>
+        {% endif %}
         </div>
     </section>
     
