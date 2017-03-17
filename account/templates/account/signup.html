@@ -76,61 +76,61 @@
     <section id="signup">
         <div class="container">
             <div class="row">
-                    <div class="col-md-12">
-                        <p>{{ form.non_field_errors }}</p>
-                        <label>CHECK ONE ONLY:</label>
+                <div class="col-md-6">
+                    <p>{{ form.non_field_errors }}</p>
+                    <label>CHECK ONE ONLY:</label>
 
-                        <div class="form-group">
-                            {{ form.password.errors }}
-                            {% for radio in form.userType %}
-                            <label class="switch">
-                                {{radio}}
-                            </label>
-                            {% endfor %}
-                        </div>
+                    <div class="form-group">
+                        {{ form.password.errors }}
+                        {% for radio in form.userType %}
+                        <label class="switch">
+                            {{radio}}
+                        </label>
+                        {% endfor %}
+                    </div>
 
-                        <div class="form-group">
-                            {{ form.firstName.errors }}
-                            <label for="{{ form.firstName.id_for_label }}">First Name: </label>
-                            {{ form.firstName }}
-                        </div>
-                      
-                        <div class="form-group">
-                            {{ form.lastName.errors }}
-                            <label for="{{ form.lastName.id_for_label }}">Last Name: </label>
-                            {{ form.lastName }}
-                        </div>
+                    <div class="form-group">
+                        {{ form.firstName.errors }}
+                        <label for="{{ form.firstName.id_for_label }}">First Name </label>
+                        <br>{{ form.firstName }}
+                    </div>
+                  
+                    <div class="form-group">
+                        {{ form.lastName.errors }}
+                        <label for="{{ form.lastName.id_for_label }}">Last Name </label>
+                        <br>{{ form.lastName }}
+                    </div>
 
-                        <div class="form-group">
-                            {{ form.email.errors }}
-                            <label for="{{ form.email.id_for_label }}">Email Address: </label>
-                            {{ form.email }}
-                        </div>
+                    <div class="form-group">
+                        {{ form.email.errors }}
+                        <label for="{{ form.email.id_for_label }}">Email Address </label>
+                        <br>{{ form.email }}
+                    </div>
 
-                        <div class="form-group">
-                            {{ form.password.errors }}
-                            <label for="{{ form.password.id_for_label }}">Password: </label>
-                            {{ form.password }}
-                        </div>
+                    <div class="form-group">
+                        {{ form.password.errors }}
+                        <label for="{{ form.password.id_for_label }}">Password</label>
+                        <br>{{ form.password }}
+                    </div>
 
-                        <div class="form-group">
-                            {{ form.address.errors }}
-                            <label for="{{ form.address.id_for_label }}">Address: </label>
-                            {{ form.address }}
-                        </div>
+                    <div class="form-group">
+                        {{ form.address.errors }}
+                        <label for="{{ form.address.id_for_label }}">Address </label>
+                        <br>{{ form.address }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.phone.errors }}
+                        <label for="{{ form.phone.id_for_label }}">Phone Number </label>
+                        <br>{{ form.phone }}
+                    </div>
                         
-                        <div class="form-group">
-                            {{ form.phone.errors }}
-                            <label for="{{ form.phone.id_for_label }}">Phone Number: </label>
-                            {{ form.phone }}
-                        </div>
-                            
-                        <div class="clearfix"></div>
-                        <div class="col-md-12 text-center">
-                            <div id="success"></div>
-                            <button onclick="" type="submit" class="btn btn-xl" >Create Account</button>
+                    <div class="clearfix">
+                        <div id="success" style="text-align: center; padding-top: 1vmax;">
+                            <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Create Account</button>
                         </div>
                     </div>
+                </div>
             </div>
         </div>    
     </section>   

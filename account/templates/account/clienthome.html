@@ -67,9 +67,9 @@
                     <div class="well">
                         <h4>{{client.firstName}} {{client.lastName}}</h4>      
                         {% if client.profilePic == "" %}
-                            <img src="../../static/img/no-img.png" class="img-circle" height="100" width="100">
+                            <img src="../../static/img/no-img.png" class="img-thumbnail" height="100" width="100">
                         {% else %}
-                            <img src="{{ client.profilePic }}" class="img-circle" height="100" width="100">
+                            <img src="{{ client.profilePic.url }}" class="img-thumbnail" height="100" width="100">
                         {% endif %}
                         <p><br><b>Address:</b><br>{{client.address}}</p>
                     </div>

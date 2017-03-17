@@ -128,8 +128,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ( 
     os.path.join(PROJECT_ROOT, 'static'),
 )
-ACCOUNT = os.path.join(BASE_DIR, 'account')
-MEDIA_ROOT = os.path.join(ACCOUNT, 'media')
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
 
 # Update database configuration with $DATABASE_URL.
