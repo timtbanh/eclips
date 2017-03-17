@@ -68,7 +68,11 @@
                         <!--<p><a href="clientprofile.html">My Profile</a>
                         </p>-->
                         <h4>{{client.firstName}} {{client.lastName}}</h4>
-                        <img src="{{ client.profilePic.url }}" class="img-circle"  height="100" width="100">
+                        {% if client.profilePic == "" %}
+                            <img src="../../static/img/no-img.png" class="img-circle" height="100" width="100">
+                        {% else %}
+                            <img src="{{ client.profilePic }}" class="img-circle" height="100" width="100">
+                        {% endif %}
                         <p><br><b>Address:</b><br>{{client.address}}</p>
                     </div>
                     </a>
