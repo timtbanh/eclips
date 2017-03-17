@@ -155,9 +155,12 @@ def login(request):
         return render(request, 'account/login.html', {'form': form})
 
 def help(request):
+    # a user is logged in
     if (request.session.has_key('email')):
         email = request.session['email']
         return render(request, "account/help2.html")
+
+    # no users are logged in
     return render(request, "account/help.html")
 
 def barberhome(request, barberEmail):
@@ -183,13 +186,13 @@ def clienthome(request, clientEmail):
     return HttpResponseRedirect('../login.html')
 
 # TODO
-# def barberprofile(request, barberEmail):
-    # barberObj = Barber.objects.get(email=barberEmail)
-    # returnBarber = getBarber(barberObj)
-    # return render(request, "account/barberprofile.html", {'barber': returnBarber})
-
 def barberprofile(request, barberEmail):
-    return render(request, "account/barberprofile.html")
+    barberObj = Barber.objects.get(email=barberEmail)
+    returnBarber = getBarber(barberObj)
+    return render(request, "account/barberprofile.html", {'barber': returnBarber})
+
+# def barberprofile(request, barberEmail):
+#     return render(request, "account/barberprofile.html")
 
 # TODO
 def clientprofile(request, clientEmail):

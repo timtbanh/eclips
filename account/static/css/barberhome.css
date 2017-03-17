@@ -42,3 +42,11 @@
   font-size: 14px;
   padding: 10px 20px;
 }
+
+header#status {
+  background-image: none;
+  color: black;
+}
+
+header > h4 { display: inline-block; }
+header span { margin-left: 1px; }
