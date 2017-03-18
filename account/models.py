@@ -17,7 +17,7 @@ class Barber(models.Model):
     walkin = models.CharField(max_length=200, null=True, blank=True)#walkin, goto customer, either
     schedule = models.TextField(null=True)#display schedule in form of text
     description = models.TextField(null=True) #other wanted information
-    # avgRating = models.FloatField(null=True)#averaged Rating
+    avgRating = models.FloatField(null=True)#averaged Rating
     profilePic = models.ImageField(upload_to="barbers", null=True, blank=True)
     def __str__(self):
         return 'Barber Name: %s %s' % (self.firstName, self.lastName)
@@ -31,7 +31,7 @@ class Client(models.Model):
     phone = models.CharField(max_length=200)
     address = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True) #other wanted information
-    # avgRating = models.FloatField(null=True)#averaged Rating 
+    avgRating = models.FloatField(null=True)#averaged Rating 
     profilePic = models.ImageField(upload_to="clients", null=True, blank=True)
     def __str__(self):
         return 'Client Name: %s %s' % (self.firstName, self.lastName)

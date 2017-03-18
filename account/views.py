@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.images import ImageFile
 from django.core.files.base import File
 from .models import Barber, Client, Appointment, Review
@@ -225,7 +226,10 @@ def editclient(request, clientEmail):
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
 
-                    clientObj.profilePic = request.FILES['profilePic']
+                    try:
+                        clientObj.profilePic = request.FILES['profilePic']
+                    except MultiValueDictKeyError:
+                        pass
                     clientObj.phone = phone
                     clientObj.address = address
                     clientObj.description = description
@@ -268,7 +272,10 @@ def editbarber(request, barberEmail):
                     schedule = form.cleaned_data['schedule']
                     skills = form.cleaned_data['skils']
                     
-                    barberObj.profilePic = request.FILES['profilePic']
+                    try:
+                        barberObj.profilePic = request.FILES['profilePic']
+                    except MultiValueDictKeyError:
+                        pass
                     barberObj.phone = phone
                     barberObj.address = address
                     barberObj.description = description

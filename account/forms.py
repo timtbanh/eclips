@@ -42,7 +42,7 @@ class EditClientForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     phone = forms.CharField()
     address = forms.CharField()
-    profilePic = forms.ImageField()
+    profilePic = forms.ImageField(required=False)
 
 class EditBarberForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
@@ -52,4 +52,4 @@ class EditBarberForm(forms.Form):
     walkin = forms.CharField()
     skills = forms.CharField(widget=forms.Textarea)
     schedule = forms.CharField(widget=forms.Textarea)
-    profilePic = forms.ImageField()
+    profilePic = forms.ImageField(required=False)
