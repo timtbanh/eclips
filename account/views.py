@@ -40,7 +40,8 @@ def getBarber(barberObj):
         'walkin': barberObj.walkin,
         'schedule': barberObj.schedule,
         'avgRating': barberObj.avgRating,
-        'profilePic': barberObj.profilePic
+        'profilePic': barberObj.profilePic,
+        'skills': barberObj.skills
     }
 
 def index(request):
@@ -219,22 +220,15 @@ def editclient(request, clientEmail):
             if(request.method=='POST'):
                 form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
                 if (form.is_valid()):
-
-                    # f = request.FILES['profilePic']
-                    # profilePic = File(f)
-                    # profilePic.save(update_filename(profilePic, request.FILES['profilePic']), true)
-
                     #save the information in the form to variables
                     phone = form.cleaned_data['phone']
                     address = form.cleaned_data['address']
                     description = form.cleaned_data['description']
-                    # profilePic = form.cleaned_data['profilePic']
 
-                    clientObj.profilePic=request.FILES['profilePic']
+                    clientObj.profilePic = request.FILES['profilePic']
                     clientObj.phone = phone
                     clientObj.address = address
                     clientObj.description = description
-                    # clientObj.profilePic = File(profilePic)
                     clientObj.save()
                     
                     return HttpResponseRedirect('clientprofile.html')
@@ -258,12 +252,12 @@ def editbarber(request, barberEmail):
                 'price':barberObj.price,
                 'walkin':barberObj.walkin,
                 'schedule':barberObj.schedule,
-                'profilePic':barberObj.profilePic
+                'skills':barberObj.skills
             }
             form = EditBarberForm(initial = data)
-            
+        
             if(request.method=='POST'):
-                form = EditBarberForm(data=request.POST)   # instance of EditBarberForm
+                form = EditBarberForm(request.POST, request.FILES)   # instance of EditBarberForm
                 if (form.is_valid()):
                     #save the information in the form to variables
                     phone = form.cleaned_data['phone']
@@ -272,15 +266,16 @@ def editbarber(request, barberEmail):
                     price = form.cleaned_data['price']
                     walkin = form.cleaned_data['walkin']
                     schedule = form.cleaned_data['schedule']
-                    # profilePic = form.cleaned_data['profilePic']
+                    skills = form.cleaned_data['skils']
                     
+                    barberObj.profilePic = request.FILES['profilePic']
                     barberObj.phone = phone
                     barberObj.address = address
                     barberObj.description = description
                     barberObj.price = price
                     barberObj.walkin = walkin
                     barberObj.schedule = schedule
-                    # barberObj.profilePic = profilePic
+                    barberObj.skills = skills
                     barberObj.save();
                     
                     return HttpResponseRedirect('barberprofile.html')

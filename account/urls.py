@@ -16,8 +16,7 @@ urlpatterns = [
     url(r'^account/(?P<clientEmail>.*)/clientprofile.html$', v.clientprofile, name='clientprofile'),
     url(r'^account/(?P<clientEmail>.*)/editclient.html$', v.editclient, name='editclient'),
     url(r'^account/(?P<barberEmail>.*)/editbarber.html$', v.editbarber, name='editbarber'),
-    url(r'^account/(?P<clientEmail>.*)/findbarber.html$',
-    v.findbarber, name='findbarber'),
+    url(r'^account/(?P<clientEmail>.*)/findbarber.html$', v.findbarber, name='findbarber'),
     
     url(r'account/makeappointment.html$', v.makeappointment, name='makeappointment'),
     url(r'^account/fakeclienthome.html$', v.fakeclienthome, name='fakeclienthome'),

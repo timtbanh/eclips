@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import DateTimeField
-from models import Client
+from models import Client, Barber
 
 class SignupForm(forms.Form):
     # choices used for the radio button
@@ -50,5 +50,6 @@ class EditBarberForm(forms.Form):
     phone = forms.CharField()
     price = forms.CharField()
     walkin = forms.CharField()
+    skills = forms.CharField(widget=forms.Textarea)
     schedule = forms.CharField(widget=forms.Textarea)
-    #profilePic = forms.CharField()
+    profilePic = forms.ImageField()

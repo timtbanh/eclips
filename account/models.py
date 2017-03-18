@@ -11,14 +11,14 @@ class Barber(models.Model):
     email = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
-    address = models.CharField(max_length=200, null=True)
-    
-    price = models.TextField(max_length=200, null=True)#list all the services being offered and their prices
-    walkin = models.CharField(max_length=200, null=True)#walkin, goto customer, either
+    address = models.CharField(max_length=200, null=True, blank=True)
+    skills = models.TextField(max_length=200, null=True, blank=True)
+    price = models.CharField(max_length=200, null=True, blank=True)#the price they charge
+    walkin = models.CharField(max_length=200, null=True, blank=True)#walkin, goto customer, either
     schedule = models.TextField(null=True)#display schedule in form of text
     description = models.TextField(null=True) #other wanted information
-    avgRating = models.FloatField(null=True)#averaged Rating
-    profilePic = models.ImageField(upload_to="barbers", null=True, blank=False)
+    # avgRating = models.FloatField(null=True)#averaged Rating
+    profilePic = models.ImageField(upload_to="barbers", blank=True)
     def __str__(self):
         return 'Barber Name: %s %s' % (self.firstName, self.lastName)
 
@@ -29,10 +29,10 @@ class Client(models.Model):
     email = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
-    address = models.CharField(max_length=200, null=True)
-    description = models.TextField(null=True) #other wanted information
-    avgRating = models.FloatField(null=True)#averaged Rating 
-    profilePic = models.ImageField(upload_to="clients", null=True, blank=False)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    description = models.TextField(null=True, blank=True) #other wanted information
+    # avgRating = models.FloatField(null=True)#averaged Rating 
+    profilePic = models.ImageField(upload_to="clients", blank=True)
     def __str__(self):
         return 'Client Name: %s %s' % (self.firstName, self.lastName)
 
