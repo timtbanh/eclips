@@ -2,7 +2,6 @@ from django import forms
 from django.forms import DateTimeField
 from models import Client
 
-
 class SignupForm(forms.Form):
     # choices used for the radio button
     CHOICES = [

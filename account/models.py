@@ -18,7 +18,7 @@ class Barber(models.Model):
     schedule = models.TextField(null=True)#display schedule in form of text
     description = models.TextField(null=True) #other wanted information
     avgRating = models.FloatField(null=True)#averaged Rating
-    profilePic = models.ImageField(upload_to="clients", null=True, blank=False)
+    profilePic = models.ImageField(upload_to="barbers", null=True, blank=False)
     def __str__(self):
         return 'Barber Name: %s %s' % (self.firstName, self.lastName)
 

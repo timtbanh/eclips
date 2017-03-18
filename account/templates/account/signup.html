@@ -77,9 +77,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img class="img-centered" src="static/img/whitelogo.jpg">
+                    <img class="img-responsive" src="../../static/img/whitelogo.jpg">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="padding-bottom: 3vmax;">
                     <p>{{ form.non_field_errors }}</p>
                     <label>CHECK ONE ONLY:</label>
 
@@ -127,13 +127,12 @@
                         <label for="{{ form.phone.id_for_label }}">Phone Number </label>
                         <br>{{ form.phone }}
                     </div>
-                        
+                </div>
                     <div class="clearfix">
-                        <div id="success" style="text-align: center; padding-top: 1vmax;">
+                        <div id="success">
                             <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Create Account</button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>    
     </section>   
