@@ -5,3 +5,4 @@ staticfiles
 *.sublime-project
 *.sublime-workspace
 .DS_STORE
+db.sqlite3
