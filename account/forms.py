@@ -32,10 +32,8 @@ class AppointmentForm(forms.Form):
     CHOICES = [
         ('selectLocationBarber', "Barber's House"),
         ('selectLocationClient', "Client's House")]
-    when = forms.DateTimeField(widget=forms.DateTimeInput())
-    address = forms.CharField()
-    # barber = forms.ForeignKey(Barber,on_delete=models.CASCADE)
-    # client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    when = forms.CharField()
+    addressChoice = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     
 class EditClientForm(forms.Form):
     # firstName = forms.CharField()

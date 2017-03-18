@@ -4,8 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.images import ImageFile
 from django.core.files.base import File
 from .models import Barber, Client, Appointment, Review
-from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm
+from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm
 import hashlib   # password hasher
+from datetime import datetime
+
 
 def update_filename(instance, filename):
     path = "upload/path/"
@@ -308,8 +310,43 @@ def findbarber(request, clientEmail):
             pass
     return HttpResponseRedirect('../login.html')
 
-def makeappointment(request):
-    return render(request, 'account/makeappointment.html')
+def makeappointment(request, barberEmail):
+    if (request.session.has_key('email')):
+        clientEmail = request.session['email']
+        print(clientEmail)
+        clientObj = Client.objects.get(email=clientEmail)
+
+        barberObj = Barber.objects.get(email=barberEmail)
+        if (request.method == 'POST'):
+            form = AppointmentForm(data=request.POST)
+            print("form is " + str(form.is_valid()))
+            if(form.is_valid()):
+
+                # get time
+                dateTimeString = form.cleaned_data['when']
+                # 03/16/2017 4:36 PM output
+                dateTimeObj = datetime.strptime(dateTimeString, '%m/%d/%Y %I:%M %p')
+
+                # get address from radio button
+                address="undecided"
+                location = form.cleaned_data['addressChoice']
+                if(location == "selectLocationBarber"):
+                    if(barberObj.address):
+                        address = barberObj.address
+                else:
+                    if(barberObj.address):
+                        address = clientObj.address
+
+                # save new appointment into model
+                newAppt = Appointment(when=dateTimeObj, address=address, barber=barberObj, client=clientObj)
+                newAppt.save()
+                return HttpResponseRedirect('../fakeclienthome.html')
+        else:
+            # empty form if form is not valid
+            form = AppointmentForm()
+        return render(request, 'account/makeappointment.html',{'form': form})
+    #if fail to have session redirect to login
+    return HttpResponseRedirect('../../login.html')
 
 def fakeclienthome(request):
     return render(request, "account/fakeclienthome.html")
