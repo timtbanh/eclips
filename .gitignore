@@ -6,3 +6,4 @@ staticfiles
 *.sublime-workspace
 .DS_STORE
 db.sqlite3
+account/media/*
