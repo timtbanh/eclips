@@ -196,6 +196,10 @@ def barberhome(request, barberEmail):
                 pass
     return HttpResponseRedirect('../login.html')
 
+def retrieveReviews(apptObj):
+
+    return
+
 def clienthome(request, clientEmail):
     if (request.session.has_key('email')):
         if(clientEmail == request.session['email']):
@@ -206,10 +210,18 @@ def clienthome(request, clientEmail):
 
                 # get a list of appointments associated with this client
                 apptQuery = Appointment.objects.filter(client=clientObj)
+
+
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+
+                # get a list of a reviews based on the list of appointments
+                
+                reviewList =  [oneAppt.review_set.all().exclude(writer=clientEmail) for oneAppt in apptQuery]
+                print(reviewList)
                 return render(request, 'account/clienthome.html', 
                               {'client': returnClient,
-                                'apptList': apptList} )
+                                'apptList': apptList,
+                                'reviewList': reviewList} )
 
             except ObjectDoesNotExist:
                 pass
