@@ -35,6 +35,6 @@ http://127.0.0.1:8000/
   ```
   python manage.py createsuperuser
   ```
-  Follow the instructions and remember the username and password
+  Follow the instructions on the command line
 
-  Go to http://127.0.0.1:8000/admin and enter the username and password
+  Go to http://127.0.0.1:8000/admin and re-enter the username and password
