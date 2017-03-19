@@ -285,7 +285,7 @@ def barberprofile(request, barberEmail):
     else:
         reviewList = ""
 
-    return render(request, 'account/barberhome.html', 
+    return render(request, 'account/barberprofile.html', 
                   {'barber': returnBarber,
                     'gallery': returnGallery,
                     'apptList': apptList,
