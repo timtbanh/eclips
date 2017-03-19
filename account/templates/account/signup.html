@@ -25,8 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/signup2.css' %}"
-    rel="stylesheet">
+    <link href="{% static 'css/signup2.css' %}" rel="stylesheet">
     
 </head>
     
@@ -69,75 +68,72 @@
     </p>
     {% endif %}
 
-
-    <form role="form" action="" method="post">
-    {% csrf_token %}
-
     <section id="signup">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="img-responsive" src="../../static/img/whitelogo.jpg">
-                </div>
-                <div class="col-md-6" style="padding-bottom: 3vmax;">
-                    <p>{{ form.non_field_errors }}</p>
-                    <label>CHECK ONE ONLY:</label>
-                    <div class="form-group">
-                        {{ form.password.errors }}
-                        {% for radio in form.userType %}
-                        <label class="switch">
-                            {{radio}}
-                            &nbsp; <!-- for spacing -->
-                        </label>
-                        {% endfor %}
+                <form role="form" action="" method="post">
+                {% csrf_token %}
+                    <div class="col-md-6">
+                        <img class="img-responsive" src="../../static/img/whitelogo.jpg">
                     </div>
+                    <div class="col-md-6" style="padding-bottom: 3vmax;">
+                        <p>{{ form.non_field_errors }}</p>
+                        <label>CHECK ONE ONLY:</label>
+                        <div class="form-group">
+                            {{ form.password.errors }}
+                            {% for radio in form.userType %}
+                            <label class="switch">
+                                {{radio}}
+                                &nbsp; <!-- for spacing -->
+                            </label>
+                            {% endfor %}
+                        </div>
 
-                    <div class="form-group">
-                        {{ form.firstName.errors }}
-                        <label for="{{ form.firstName.id_for_label }}">First Name </label>
-                        <br>{{ form.firstName }}
-                    </div>
-                  
-                    <div class="form-group">
-                        {{ form.lastName.errors }}
-                        <label for="{{ form.lastName.id_for_label }}">Last Name </label>
-                        <br>{{ form.lastName }}
-                    </div>
+                        <div class="form-group">
+                            {{ form.firstName.errors }}
+                            <label for="{{ form.firstName.id_for_label }}">First Name </label>
+                            <br>{{ form.firstName }}
+                        </div>
+                      
+                        <div class="form-group">
+                            {{ form.lastName.errors }}
+                            <label for="{{ form.lastName.id_for_label }}">Last Name </label>
+                            <br>{{ form.lastName }}
+                        </div>
 
-                    <div class="form-group">
-                        {{ form.email.errors }}
-                        <label for="{{ form.email.id_for_label }}">Email Address </label>
-                        <br>{{ form.email }}
-                    </div>
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label for="{{ form.email.id_for_label }}">Email Address </label>
+                            <br>{{ form.email }}
+                        </div>
 
-                    <div class="form-group">
-                        {{ form.password.errors }}
-                        <label for="{{ form.password.id_for_label }}">Password</label>
-                        <br>{{ form.password }}
-                    </div>
+                        <div class="form-group">
+                            {{ form.password.errors }}
+                            <label for="{{ form.password.id_for_label }}">Password</label>
+                            <br>{{ form.password }}
+                        </div>
 
-                    <div class="form-group">
-                        {{ form.address.errors }}
-                        <label for="{{ form.address.id_for_label }}">Address </label>
-                        <br>{{ form.address }}
+                        <div class="form-group">
+                            {{ form.address.errors }}
+                            <label for="{{ form.address.id_for_label }}">Address </label>
+                            <br>{{ form.address }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label for="{{ form.phone.id_for_label }}">Phone Number </label>
+                            <br>{{ form.phone }}
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        {{ form.phone.errors }}
-                        <label for="{{ form.phone.id_for_label }}">Phone Number </label>
-                        <br>{{ form.phone }}
-                    </div>
-                </div>
                     <div class="clearfix">
                         <div id="success">
                             <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Create Account</button>
                         </div>
-                    </div>
+                    </div>  
+                </form> 
             </div>
-        </div>    
-    </section>   
-</form> 
-    
+        </div>
+    </section>
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 

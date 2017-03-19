@@ -10,3 +10,7 @@
 .navbar-default .navbar-brand {
     color: #ffffff;
 }
+
+td {
+	padding: 2vmax;
+}

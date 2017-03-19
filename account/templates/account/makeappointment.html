@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sign Up Page</title>
+    <title>Make an Appointment</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,8 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/signup2.css' %}"
-    rel="stylesheet">
+    <link href="{% static 'css/signup2.css' %}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -55,7 +54,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button><!--  -->
-                <a class="navbar-brand page-scroll" href="../login.html">E-clips</a>
+                <a class="navbar-brand page-scroll" href="clienthome.html">E-clips</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,12 +73,10 @@
         <!-- /.container-fluid -->
         </nav>
 
-
-
         <form role="form" action="" method="post">
         {% csrf_token %}
 
-        <section id="signup">
+        <section id="makeappointment">
 
             <div class="container">
                 <h3> Schedule an Appointment</h3>
@@ -127,8 +124,6 @@
                         </label>
                         {% endfor %}
                     </div>
-               
-
                     <div class="col-md-12 text-center">
                         <div id="success"></div>
                         <button  type="submit" class="btn btn-xl" >Schedule Appointment</button>

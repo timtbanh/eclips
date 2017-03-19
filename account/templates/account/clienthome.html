@@ -26,7 +26,7 @@
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
-    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
+    <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
 </head>
     
 <body id="page-top" class="index">  
@@ -162,24 +162,24 @@
                     </div>
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
-                            <h3 class="section-heading">Recent Comments</h3>
+                            <h3 class="section-heading">Comments</h3>
                             <div class="row">
-                                <div class="col-sm-3" style="margin-top:10px">
+                                <div class="col-sm-4" style="margin-top:10px">
                                     <h4>Info</h4>
                                 </div>
-                                <div class="col-sm-9" style="margin-top:10px">
+                                <div class="col-sm-8" style="margin-top:10px">
                                     <h4>Comment</h4>
                                 </div>                              
                             </div>
                             {% for aReview in reviewList%}
                                 <div class="row">
-                                    <div class="col-sm-3" style="margin-top:25px">
+                                    <div class="col-sm-4" style="margin-top:25px">
                                         <b>{{aReview.appointment.barber.firstName}} {{aReview.appointment.barber.lastName}}
                                         </br>
                                         {{aReview.appointment.when}}</b>
                                     </div>
 
-                                    <div class="col-sm-9" style="margin-top:25px">
+                                    <div class="col-sm-8" style="margin-top:25px">
                                         {{aReview.comment}}
                                     </div>
                                     
@@ -211,5 +211,5 @@
 
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
-    </body>
+</body>
 </html>   

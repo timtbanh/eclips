@@ -25,8 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/signup2.css' %}"
-    rel="stylesheet">
+    <link href="{% static 'css/signup2.css' %}" rel="stylesheet">
     
 </head>
     
@@ -69,28 +68,27 @@
 
     <form role="form" action="" method="post">
     {% csrf_token %}
-
-    <section id="signup">
-        <div class="container">
-            <div class="row">
-                <h3> Write a Review </h3>
-                <p>For the appointment between the barber <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b> and client <b>{{appointment.client.firstName}} {{appointment.client.lastName}}</b> @ {{appointment.when}}</p>
-                
-                    <div class="form-group" style="text-align: center;">
-                        {{ form.comment.errors }}
-                        <br>{{ form.comment }}
-                    </div>
-                
-                    <div class="clearfix">
-                        <div id="success">
-                            <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Update</button>
+        <section id="writereview">
+            <div class="container">
+                <div class="row">
+                    <h3> Write a Review </h3>
+                    <p>For the appointment between the barber <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b> and client <b>{{appointment.client.firstName}} {{appointment.client.lastName}}</b> @ {{appointment.when}}</p>
+                    
+                        <div class="form-group" style="text-align: center;">
+                            {{ form.comment.errors }}
+                            <br>{{ form.comment }}
+                        </div>
+                    
+                        <div class="clearfix">
+                            <div id="success">
+                                <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Update</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>    
-    </section>   
-</form> 
+            </div>    
+        </section>   
+    </form> 
     
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
