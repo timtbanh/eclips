@@ -185,7 +185,11 @@ def barberhome(request, barberEmail):
         try:
             barberObj = Barber.objects.get(email=barberEmail)
             returnBarber = getBarber(barberObj)
-            return render(request, 'account/barberhome.html', {'barber': returnBarber})
+            
+            #get list of appointments
+            apptQuery = Appointment.objects.filter(barber=barberObj)
+            apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+            return render(request, 'account/barberhome.html', {'barber': returnBarber, 'apptList':apptList})
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
