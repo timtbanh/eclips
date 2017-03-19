@@ -85,6 +85,9 @@
                                 <div class="panel-body" style="text-align:center"> 
                                     <h3 class="section-heading">Recent Appointments</h3>
                                     
+                                    {% for appointment in apptList%}
+                                        appointment.when
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
