@@ -53,4 +53,4 @@ class EditBarberForm(forms.Form):
     profilePic = forms.ImageField(required=False)
 
 class ReviewForm(forms.Form):
-    comment = forms.CharField(widget=forms.TextArea)
+    comment = forms.CharField(widget=forms.Textarea)
