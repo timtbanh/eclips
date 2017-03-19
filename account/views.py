@@ -196,9 +196,13 @@ def barberhome(request, barberEmail):
                 pass
     return HttpResponseRedirect('../login.html')
 
-def retrieveReviews(apptObj):
-
-    return
+def getReview(reviewObj):
+    return{
+        'pk': reviewObj.pk,
+        'comment': reviewObj.comment,
+        'writerEmail': reviewObj.writer,
+        'appointment': reviewObj.appointment
+    }
 
 def clienthome(request, clientEmail):
     if (request.session.has_key('email')):
@@ -211,12 +215,14 @@ def clienthome(request, clientEmail):
                 # get a list of appointments associated with this client
                 apptQuery = Appointment.objects.filter(client=clientObj)
 
-
+                print(apptQuery)
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
 
                 # get a list of a reviews based on the list of appointments
                 
-                reviewList =  [oneAppt.review_set.all().exclude(writer=clientEmail) for oneAppt in apptQuery]
+                reviewQuery = [oneAppt.review_set.all().exclude(writer=clientEmail).get() for oneAppt in apptQuery]
+                print(reviewQuery)
+                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
                 print(reviewList)
                 return render(request, 'account/clienthome.html', 
                               {'client': returnClient,

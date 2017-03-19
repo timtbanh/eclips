@@ -164,6 +164,23 @@
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
                             <h3 class="section-heading">Recent Comments</h3>
+                            {% for aReview in reviewList%}
+                                <div class="row">
+                                    <div class="col-sm-3" style="margin-top:25px">
+                                        {{aReview.appointment.barber.firstName}} {{aReview.appointment.barber.lastName}}
+                                    </div>
+
+                                    <div class="col-sm-6" style="margin-top:25px">
+                                        {{aReview.comment}}
+                                    </div>
+
+                                    <div class="col-sm-3" style="margin-top:25px">
+                                        {{aReview.appointment.when}}
+                                    </div>
+
+                                    
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="row">
