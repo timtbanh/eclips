@@ -45,6 +45,6 @@
 
 label#fields {
   display: inline-block;
-  width: 355px;
+  width:26vmax;
   text-align: left;
 }
