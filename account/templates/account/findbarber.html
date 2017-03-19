@@ -71,22 +71,21 @@
             <div class="row">
                 <div class="panel panel-default text-left">
                     <div class="row">
-                        
-                        <div class="col-sm-3" style="padding-top:2vmax; text-align: center">
-                            {% if b.profilePic == "" %}
-                                <img src="../../static/img/no-img.png" class="img-thumbnail" height="100" width="100">
-                            {% else %}
-                                <img src="{{ b.profilePic.url }}" class="img-thumbnail" height="100" width="100">
-                            {% endif %}
-                            <p></p>
-                        </div>
+                        <a href="../{{ b.email }}/barberprofile.html">
+                            <div class="col-sm-3" style="padding-top:1vmax; text-align: center; padding-bottom:1vmax;">
+                                {% if b.profilePic == "" %}
+                                    <img src="../../static/img/no-img.png" class="img-thumbnail" height="100" width="100">
+                                {% else %}
+                                    <img src="{{ b.profilePic.url }}" class="img-thumbnail" height="100" width="100">
+                                {% endif %}
+                            </div>
+                        </a>
                         <div class="col-sm-5">
-                            <h1>{{ b.firstName }} {{ b.lastName }}</h1>
+                            <h3>{{ b.firstName }} {{ b.lastName }}</h3>
                             <p>{{ b.address }}</p>
                         </div>
-                    
-                        <div class="col-sm-4" style="padding-top:2vmax;">
-                            <a href="../{{ b.email }}/barberprofile.html" class="btn btn-xl">View Profile</a>
+                        <div class="col-sm-4" style="padding-top:3vmax;">
+                             <a href="../{{ b.email }}/makeappointment.html" class="btn btn-m">Book Appointment</a>
                         </div>
                     </div>
                 </div>
