@@ -17,6 +17,14 @@ def update_filename(instance, filename):
     format = instance.userid + instance.file_extension
     return os.path.join(path, format)
 
+def getReview(reviewObj):
+    return{
+        'pk': reviewObj.pk,
+        'comment': reviewObj.comment,
+        'writerEmail': reviewObj.writer,
+        'appointment': reviewObj.appointment
+    }
+
 #   helper function to save all client info in one object
 def getClient(clientObj):
     return {
@@ -188,21 +196,20 @@ def barberhome(request, barberEmail):
                 barberObj = Barber.objects.get(email=barberEmail)
                 returnBarber = getBarber(barberObj)
                 
-                #get list of appointments
-                apptQuery = Appointment.objects.filter(barber=barberObj)
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
-                return render(request, 'account/barberhome.html', {'barber': returnBarber, 'apptList':apptList})
+
+                # get a list of a reviews based on the list of appointments
+                
+                reviewQuery = [oneAppt.review_set.all().exclude(writer=clientEmail).get() for oneAppt in apptQuery]
+                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+                return render(request, 'account/barberhome.html', 
+                              {'barber': returnBarber,
+                                'apptList': apptList,
+                                'reviewList': reviewList} )
             except ObjectDoesNotExist:
                 pass
     return HttpResponseRedirect('../login.html')
 
-def getReview(reviewObj):
-    return{
-        'pk': reviewObj.pk,
-        'comment': reviewObj.comment,
-        'writerEmail': reviewObj.writer,
-        'appointment': reviewObj.appointment
-    }
 
 def clienthome(request, clientEmail):
     if (request.session.has_key('email')):
