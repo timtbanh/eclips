@@ -58,7 +58,6 @@ def getAppointment(apptObj):
         'address': apptObj.address,
         'barber': getBarber(apptObj.barber),
         'client': getClient(apptObj.client),
-        'isCompleted': apptObj.isCompleted
     }
 
 def index(request):
@@ -386,18 +385,36 @@ def makeappointment(request, barberEmail):
 
 def writereview(request, apptReviewID):
     if(request.session.has_key('email')):
-        clientEmail = request.session['email']
-        clientObj = Client.objects.get(email=clientEmail)
+        userEmail = request.session['email']
+
+        # get the appointment associated
+        apptObj=Appointment.objects.get(pk=apptReviewID)
+        passAppt=getAppointment(apptObj)
         if(request.method == 'POST'):
             form = ReviewForm(data=request.POST)
+
+            print("form is " + str(form.is_valid()))
             if (form.is_valid()):
-                apptObj=Appointment.objects.get(pk=apptReviewID)
                 comment=form.cleaned_data['comment']
 
-
+                #get review of the appointment
+                print("number of reviews:" + str(apptObj.review_set.all()))
+                
+                # review already exists for this client and appt
+                if(apptObj.review_set.count() > 0):
+                    reviewObj = apptObj.review_set.get(writer=userEmail)
+                    if(reviewObj.writer == userEmail):
+                        reviewObj.comment = comment
+                        reviewObj.save()
+                else:    # new review must be made
+                    reviewObj = Review(comment=comment, writer=userEmail,appointment=apptObj)
+                    reviewObj.save()
+                outURL = '../{0}/clienthome.html'.format(userEmail)
+                return HttpResponseRedirect(outURL)
         else:
             form = ReviewForm()
-        return render(request, "account/writereview.html", {'form': form})
+        return render(request, "account/writereview.html", {'form': form, 'appointment': passAppt})
+
     return HttpResponseRedirect('../../login.html')
 
 

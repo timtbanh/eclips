@@ -47,14 +47,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="help.html">Help</a>
+                    <a href="../help.html">Help</a>
                 </li>
                 <li>
-                    <a href="signup.html">Sign Up</a>
+                    <a href="/">Log Out</a>
                 </li>    
-                <li>
-                    <a href="login.html">Login</a>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -75,17 +72,18 @@
 
     <section id="signup">
         <div class="container">
+            <h3> Write an Appointment </h3>
+            <p>For appointment between Barber: <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b> and Client: <b>{{appointment.client.firstName}} {{appointment.client.lastName}}</b> @ {{appointment.when}}</p>
             <div class="row">
-                    
                     <div class="form-group">
                         {{ form.comment.errors }}
-                        <label for="{{ form.comment.id_for_label }}">Phone Number </label>
+                        <label for="{{ form.comment.id_for_label }}">Comments</label>
                         <br>{{ form.comment }}
                     </div>
                 </div>
                     <div class="clearfix">
                         <div id="success">
-                            <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Create Account</button>
+                            <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Update</button>
                         </div>
                     </div>
             </div>
