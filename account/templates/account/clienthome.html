@@ -101,14 +101,16 @@
                                             <div class="col-sm-3" style="margin-top:40px">
                                                 <b>{{appointment.when}}</b>
                                             </div>
-
                                             <div class="col-sm-3" style="margin-top:40px">
-                                                <a href="../../review/{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
+                                                <b>Address: {{appointment.address}}</b>
                                             </div>
-                                  
+
+                                            <div class="col-sm-4">
+                                                <a href="../{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
+                                            </div>
                                             <!-- Trigger the modal with a button -->
-                                            <div class="col-sm-3">
-                                                <a data-toggle="modal" data-target="#myModal">Cancel</a>
+                                            <div class="col-sm-4">
+                                                <a data-toggle="modal" data-target="#myModal"><b>Cancel Appointment</b></a>
                                             </div>
 
                                             <!-- Modal -->

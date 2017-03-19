@@ -49,13 +49,13 @@ class Appointment(models.Model):
     address = models.CharField(max_length=200)
     barber = models.ForeignKey(Barber,on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    isCompleted = models.BooleanField(default=False)#if by date time, then true
     def __str__(self):
         return 'Appointment between: %s & %s @ %s' % (self.barber.firstName, self.client.lastName, self.when)
 
 @python_2_unicode_compatible
 class Review(models.Model):
     comment = models.TextField()
+    writer = models.CharField(max_length=200,null=True, blank=True)
     appointment = models.ForeignKey(Appointment, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return 'Review of %s' % (self.appointment)
