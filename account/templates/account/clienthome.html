@@ -84,8 +84,16 @@
                             <div class="panel panel-default text-left">
                                 <div class="panel-body" style="text-align:center"> 
                                     <h3 class="section-heading">Recent Appointments</h3>
-                                    
+                                    {% for appointment in apptList%}
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                {% if appointment.barber.profilePic == "" %}
+                                                    <img src="../../static/img/no-img.png" class="img-thumbnail"- height="100" width="100">
+                                                {% else %}
+                                                    <img src="{{ appointment.barber.profilePic.url }}" class="img-thumbnail" height="100" width="100">
+                                                {% endif %}
                                 </div>
+                                            {% endfor %}
                             </div>
                         </div>
                     </div>

@@ -123,6 +123,9 @@
                             <div class="panel panel-default text-center">
                                 <div class="panel-body" style="text-align:center">
                                     <h3 class="section-heading">Gallery</h3>
+                                    {% for g in gallery %}
+                                        <img src="{{g.gallery.url}}" class="img-thumbnail" height="100" width="100">
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

@@ -43,8 +43,8 @@
   padding: 10px 20px;
 }
 
-label#fields {
+fields {
   display: inline-block;
-  width: 355px;
+  width: 420px;
   text-align: left;
 }
