@@ -25,6 +25,7 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
     <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
     <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
 </head>
@@ -46,7 +47,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="help.html">Help</a>
+                    <a href="../help.html">Help</a>
                 </li>
                 <li>
                     <a href="../../..">Log Out</a>
@@ -66,11 +67,30 @@
             <div class="row">
                 <h5>Choose a Barber</h5>
             </div>
+            {% for b in barberList %}
             <div class="row">
-                {% for b in Barber.objects.all() %}
-                    {{ b.firstName }} {{ b.lastName }}
-                {% endfor %}
+                <div class="panel panel-default text-left">
+                    <div class="row">
+                        <a href="../{{ b.email }}/barberprofile.html">
+                            <div class="col-sm-3" style="padding-top:1vmax; text-align: center; padding-bottom:1vmax;">
+                                {% if b.profilePic == "" %}
+                                    <img src="../../static/img/no-img.png" class="img-thumbnail" height="100" width="100">
+                                {% else %}
+                                    <img src="{{ b.profilePic.url }}" class="img-thumbnail" height="100" width="100">
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="col-sm-5">
+                            <h3>{{ b.firstName }} {{ b.lastName }}</h3>
+                            <p>{{ b.address }}</p>
+                        </div>
+                        <div class="col-sm-4" style="padding-top:3vmax;">
+                             <a href="../{{ b.email }}/makeappointment.html" class="btn btn-m">Book Appointment</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </form>
     
