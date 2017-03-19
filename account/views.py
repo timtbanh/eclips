@@ -181,35 +181,37 @@ def help(request):
 
 def barberhome(request, barberEmail):
     if (request.session.has_key('email')):
-        email = request.session['email']
-        try:
-            barberObj = Barber.objects.get(email=barberEmail)
-            returnBarber = getBarber(barberObj)
-            
-            #get list of appointments
-            apptQuery = Appointment.objects.filter(barber=barberObj)
-            apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
-            return render(request, 'account/barberhome.html', {'barber': returnBarber, 'apptList':apptList})
-        except ObjectDoesNotExist:
-            pass
+        if(barberEmail == request.session['email']):
+            email = request.session['email']
+            try:
+                barberObj = Barber.objects.get(email=barberEmail)
+                returnBarber = getBarber(barberObj)
+                
+                #get list of appointments
+                apptQuery = Appointment.objects.filter(barber=barberObj)
+                apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+                return render(request, 'account/barberhome.html', {'barber': returnBarber, 'apptList':apptList})
+            except ObjectDoesNotExist:
+                pass
     return HttpResponseRedirect('../login.html')
 
 def clienthome(request, clientEmail):
     if (request.session.has_key('email')):
-        email = request.session['email']
-        try:
-            clientObj = Client.objects.get(email=clientEmail)
-            returnClient = getClient(clientObj)
+        if(clientEmail == request.session['email']):
+            email = request.session['email']
+            try:
+                clientObj = Client.objects.get(email=clientEmail)
+                returnClient = getClient(clientObj)
 
-            # get a list of appointments associated with this client
-            apptQuery = Appointment.objects.filter(client=clientObj)
-            apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
-            return render(request, 'account/clienthome.html', 
-                          {'client': returnClient,
-                            'apptList': apptList} )
+                # get a list of appointments associated with this client
+                apptQuery = Appointment.objects.filter(client=clientObj)
+                apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+                return render(request, 'account/clienthome.html', 
+                              {'client': returnClient,
+                                'apptList': apptList} )
 
-        except ObjectDoesNotExist:
-            pass
+            except ObjectDoesNotExist:
+                pass
     return HttpResponseRedirect('../login.html')
 
 # TODO
@@ -233,94 +235,96 @@ def clientprofile(request, clientEmail):
 
 def editclient(request, clientEmail):
     if (request.session.has_key('email')):
-        email = request.session['email']
-        try:
-            clientObj = Client.objects.get(email=clientEmail)
-            data = {
-                'phone':clientObj.phone,
-                'address':clientObj.address,
-                'description':clientObj.description
-            }
+        if(clientEmail == request.session['email']):
+            email = request.session['email']
+            try:
+                clientObj = Client.objects.get(email=clientEmail)
+                data = {
+                    'phone':clientObj.phone,
+                    'address':clientObj.address,
+                    'description':clientObj.description
+                }
 
-            form = EditClientForm(data)
-        
-            if(request.method=='POST'):
-                form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
-                if (form.is_valid()):
-                    #save the information in the form to variables
-                    phone = form.cleaned_data['phone']
-                    address = form.cleaned_data['address']
-                    description = form.cleaned_data['description']
+                form = EditClientForm(data)
+            
+                if(request.method=='POST'):
+                    form = EditClientForm(request.POST, request.FILES)   # instance of EditClientForm
+                    if (form.is_valid()):
+                        #save the information in the form to variables
+                        phone = form.cleaned_data['phone']
+                        address = form.cleaned_data['address']
+                        description = form.cleaned_data['description']
 
-                    try:
-                        clientObj.profilePic = request.FILES['profilePic']
-                    except MultiValueDictKeyError:
-                        pass
-                    clientObj.phone = phone
-                    clientObj.address = address
-                    clientObj.description = description
-                    clientObj.save()
-                    
-                    return HttpResponseRedirect('clientprofile.html')
+                        try:
+                            clientObj.profilePic = request.FILES['profilePic']
+                        except MultiValueDictKeyError:
+                            pass
+                        clientObj.phone = phone
+                        clientObj.address = address
+                        clientObj.description = description
+                        clientObj.save()
+                        
+                        return HttpResponseRedirect('clientprofile.html')
 
-            else:
-                form = EditClientForm(initial = data)
-            return render(request, 'account/editclient.html', {'form': form})
-        except ObjectDoesNotExist:
-            pass
+                else:
+                    form = EditClientForm(initial = data)
+                return render(request, 'account/editclient.html', {'form': form})
+            except ObjectDoesNotExist:
+                pass
     return HttpResponseRedirect('../login.html')
 
 def editbarber(request, barberEmail):
     if (request.session.has_key('email')):
-        email = request.session['email']
-        try:
-            barberObj = Barber.objects.get(email=barberEmail)
-            data = {
-                'phone':barberObj.phone,
-                'address':barberObj.address,
-                'description':barberObj.description,
-                'price':barberObj.price,
-                'walkin':barberObj.walkin,
-                'schedule':barberObj.schedule,
-                'skills':barberObj.skills
-            }
-            form = EditBarberForm(initial = data)
-        
-            if(request.method=='POST'):
-                form = EditBarberForm(request.POST, request.FILES)   # instance of EditBarberForm
-                if (form.is_valid()):
-                    #save the information in the form to variables
-                    phone = form.cleaned_data['phone']
-                    address = form.cleaned_data['address']
-                    description = form.cleaned_data['description']
-                    price = form.cleaned_data['price']
-                    walkin = form.cleaned_data['walkin']
-                    schedule = form.cleaned_data['schedule']
-                    skills = form.cleaned_data['skills']
-                    try:
-                        barberObj.profilePic =request.FILES['profilePic']
-                    except MultiValueDictKeyError:
-                        pass
-                    try:
-                        galleryObj = Gallery(barber = barberObj, gallery = request.FILES['gallery'])
-                        galleryObj.save();
-                    except MultiValueDictKeyError:
-                        pass
-                    barberObj.phone = phone
-                    barberObj.address = address
-                    barberObj.description = description
-                    barberObj.price = price
-                    barberObj.walkin = walkin
-                    barberObj.schedule = schedule
-                    barberObj.skills = skills
-                    barberObj.save();
-                    
-                    return HttpResponseRedirect('barberprofile.html')
+        if(barberEmail == request.session['email']):
+            email = request.session['email']
+            try:
+                barberObj = Barber.objects.get(email=barberEmail)
+                data = {
+                    'phone':barberObj.phone,
+                    'address':barberObj.address,
+                    'description':barberObj.description,
+                    'price':barberObj.price,
+                    'walkin':barberObj.walkin,
+                    'schedule':barberObj.schedule,
+                    'skills':barberObj.skills
+                }
+                form = EditBarberForm(initial = data)
+            
+                if(request.method=='POST'):
+                    form = EditBarberForm(request.POST, request.FILES)   # instance of EditBarberForm
+                    if (form.is_valid()):
+                        #save the information in the form to variables
+                        phone = form.cleaned_data['phone']
+                        address = form.cleaned_data['address']
+                        description = form.cleaned_data['description']
+                        price = form.cleaned_data['price']
+                        walkin = form.cleaned_data['walkin']
+                        schedule = form.cleaned_data['schedule']
+                        skills = form.cleaned_data['skills']
+                        try:
+                            barberObj.profilePic =request.FILES['profilePic']
+                        except MultiValueDictKeyError:
+                            pass
+                        try:
+                            galleryObj = Gallery(barber = barberObj, gallery = request.FILES['gallery'])
+                            galleryObj.save();
+                        except MultiValueDictKeyError:
+                            pass
+                        barberObj.phone = phone
+                        barberObj.address = address
+                        barberObj.description = description
+                        barberObj.price = price
+                        barberObj.walkin = walkin
+                        barberObj.schedule = schedule
+                        barberObj.skills = skills
+                        barberObj.save();
+                        
+                        return HttpResponseRedirect('barberprofile.html')
 
-            return render(request, 'account/editbarber.html', {'form': form})
+                return render(request, 'account/editbarber.html', {'form': form})
 
-        except ObjectDoesNotExist:
-            pass
+            except ObjectDoesNotExist:
+                pass
     return HttpResponseRedirect('../login.html')
 
     #editclient.html posts to this same page and then this view will redirect
