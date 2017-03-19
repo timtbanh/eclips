@@ -96,13 +96,18 @@
 
                                             </div>
                                             <div class="col-sm-3" style="margin-top:40px">
-                                                <b>{{appointment.barber.firstName}}</b>
+                                                <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b>
                                             </div>
                                             <div class="col-sm-3" style="margin-top:40px">
                                                 <b>{{appointment.when}}</b>
                                             </div>
-                                            <!-- Trigger the modal with a button -->
+
                                             <div class="col-sm-3" style="margin-top:40px">
+                                                <a href="../../review/{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
+                                            </div>
+                                  
+                                            <!-- Trigger the modal with a button -->
+                                            <div class="col-sm-3">
                                                 <a data-toggle="modal" data-target="#myModal">Cancel</a>
                                             </div>
 
@@ -128,10 +133,10 @@
                                                     </div>
 
                                                 </div>
-                                          </div>
-
-                                            
-                                        </div>
+                                            </div>
+                                            <!-- end modal-->
+                                          
+                                        </div> <!-- end row -->
                                         
                                     {% endfor %}
                                 </div>
