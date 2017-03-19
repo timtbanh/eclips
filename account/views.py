@@ -267,10 +267,6 @@ def barberprofile(request, barberEmail):
     returnBarber = getBarber(barberObj)
     return render(request, "account/barberprofile.html", {'barber': returnBarber, 'gallery': returnGallery})
 
-# def barberprofile(request, barberEmail):
-#     return render(request, "account/barberprofile.html")
-
-# TODO
 def clientprofile(request, clientEmail):
     # filter through the client table by matching emails
     clientObj = Client.objects.get(email=clientEmail)
@@ -372,9 +368,6 @@ def editbarber(request, barberEmail):
             except ObjectDoesNotExist:
                 pass
     return HttpResponseRedirect('../login.html')
-
-    #editclient.html posts to this same page and then this view will redirect
-    # return render(request, 'account/editbarber.html', {'form': form})
 
 def findbarber(request, clientEmail):
     if (request.session.has_key('email')):
