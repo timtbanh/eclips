@@ -84,6 +84,8 @@
                             <div class="panel panel-default text-left">
                                 <div class="panel-body" style="text-align:center"> 
                                     <h3 class="section-heading">Appointments</h3>
+                                        
+                                    {% if apptList %}
 
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -156,6 +158,11 @@
                                         </div> <!-- end row -->
                                         
                                     {% endfor %}
+                                    {% else %}
+                                        <div class="col-sm-12" style="margin-top:10px">
+                                            <p>Any appointments made with a barber will be displayed here</p>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -163,6 +170,8 @@
                     <div class="panel panel-default text-left">
                         <div class="panel-body" style="text-align:center">
                             <h3 class="section-heading">Comments</h3>
+
+                            {% if reviewList%}
                             <div class="row">
                                 <div class="col-sm-4" style="margin-top:10px">
                                     <h4>Info</h4>
@@ -185,6 +194,12 @@
                                     
                                 </div>
                             {% endfor %}
+
+                            {% else %}
+                                <div class="col-sm-12" style="margin-top:10px">
+                                    <p>Any barber who writes a comment on you will be displayed here</p>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="row">
