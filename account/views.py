@@ -364,7 +364,8 @@ def makeappointment(request, barberEmail):
                 # save new appointment into model
                 newAppt = Appointment(when=dateTimeObj, address=address, barber=barberObj, client=clientObj)
                 newAppt.save()
-                return HttpResponseRedirect('../fakeclienthome.html')
+                outURL = '../{0}/clienthome.html'.format(clientEmail)
+                return HttpResponseRedirect(outURL)
         else:
             # empty form if form is not valid
             form = AppointmentForm()
