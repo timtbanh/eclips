@@ -4,8 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.images import ImageFile
 from django.core.files.base import File
-from .models import Barber, Client, Appointment, Review
+
+from .models import Barber, Gallery, Client, Appointment, Review
 from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm, ReviewForm
+
 import hashlib   # password hasher
 from datetime import datetime
 
@@ -45,6 +47,7 @@ def getBarber(barberObj):
         'avgRating': barberObj.avgRating,
         'profilePic': barberObj.profilePic,
         'skills': barberObj.skills
+        
     }
 
 #   helper function to format all appointments in one object
@@ -184,7 +187,11 @@ def barberhome(request, barberEmail):
         try:
             barberObj = Barber.objects.get(email=barberEmail)
             returnBarber = getBarber(barberObj)
-            return render(request, 'account/barberhome.html', {'barber': returnBarber})
+            
+            #get list of appointments
+            apptQuery = Appointment.objects.filter(barber=barberObj)
+            apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+            return render(request, 'account/barberhome.html', {'barber': returnBarber, 'apptList':apptList})
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
@@ -210,8 +217,9 @@ def clienthome(request, clientEmail):
 # TODO
 def barberprofile(request, barberEmail):
     barberObj = Barber.objects.get(email=barberEmail)
+    returnGallery = barberObj.gallery_set.all()
     returnBarber = getBarber(barberObj)
-    return render(request, "account/barberprofile.html", {'barber': returnBarber})
+    return render(request, "account/barberprofile.html", {'barber': returnBarber, 'gallery': returnGallery})
 
 # def barberprofile(request, barberEmail):
 #     return render(request, "account/barberprofile.html")
@@ -290,10 +298,14 @@ def editbarber(request, barberEmail):
                     price = form.cleaned_data['price']
                     walkin = form.cleaned_data['walkin']
                     schedule = form.cleaned_data['schedule']
-                    skills = form.cleaned_data['skils']
-                    
+                    skills = form.cleaned_data['skills']
                     try:
-                        barberObj.profilePic = request.FILES['profilePic']
+                        barberObj.profilePic =request.FILES['profilePic']
+                    except MultiValueDictKeyError:
+                        pass
+                    try:
+                        galleryObj = Gallery(barber = barberObj, gallery = request.FILES['gallery'])
+                        galleryObj.save();
                     except MultiValueDictKeyError:
                         pass
                     barberObj.phone = phone
@@ -322,10 +334,10 @@ def findbarber(request, clientEmail):
         barber_array = Barber.objects.all()
         try:
             clientObj = Client.objects.get(email=clientEmail)
-            form = findabarberform
+            barberList = Barber.objects.all()
             
             
-            return render(request, 'account/findbarber.html', {'form': form})
+            return render(request, 'account/findbarber.html',{'barberList': barberList})
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
@@ -359,7 +371,8 @@ def makeappointment(request, barberEmail):
                 # save new appointment into model
                 newAppt = Appointment(when=dateTimeObj, address=address, barber=barberObj, client=clientObj)
                 newAppt.save()
-                return HttpResponseRedirect('../fakeclienthome.html')
+                outURL = '../{0}/clienthome.html'.format(clientEmail)
+                return HttpResponseRedirect(outURL)
         else:
             # empty form if form is not valid
             form = AppointmentForm()
@@ -383,9 +396,18 @@ def writereview(request, apptReviewID):
         return render(request, "account/writereview.html", {'form': form})
     return HttpResponseRedirect('../../login.html')
 
+
+def cancelappointment(request, apptReviewID):
+        clientEmail = request.session['email']
+        apptObj = Appointment.objects.get(pk=apptReviewID)
+        apptObj.delete()
+        outURL = '../{0}/clienthome.html'.format(clientEmail)
+        return HttpResponseRedirect(outURL)
+    
 def fakeclienthome(request):
     return render(request, "account/fakeclienthome.html")
 def fakeclientprofile(request):
     return render(request, "account/fakeclientprofile.html")
 def fakebarberprofile(request):
     return render(request, "account/fakebarberprofile.html")
+

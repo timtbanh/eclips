@@ -85,22 +85,7 @@
                                 <header id="status">
                                     <h4 contenteditable="true">Status: </h4>
                                     <span>Taking Appointments</span>
-                                    <!--<button type="button" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                    </button>-->
-                                    <!-- <p>Your Rating:</p>
-                                    <span class="starRating">
-                                        <input id="rating5" type="radio" name="rating" value="5">
-                                        <label for="rating5">5</label>
-                                        <input id="rating4" type="radio" name="rating" value="4">
-                                        <label for="rating4">4</label>
-                                        <input id="rating3" type="radio" name="rating" value="3">
-                                        <label for="rating3">3</label>
-                                        <input id="rating2" type="radio" name="rating" value="2">
-                                        <label for="rating2">2</label>
-                                        <input id="rating1" type="radio" name="rating" value="1">
-                                        <label for="rating1">1</label>
-                                    </span> -->
+                                    
                                 </div>
                                 </header>
                             </div>
@@ -111,120 +96,64 @@
                             <div class="row" style="text-align:center">
 
                                     <h3 class="section-heading">Upcoming Appointments</h3>
+                                    {% for appointment in apptList%}
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                {% if appointment.client.profilePic == "" %}
+                                                    <img src="../../static/img/no-img.png" class="img-thumbnail"- height="100" width="100">
+                                                {% else %}
+                                                    <img src="{{ appointment.client.profilePic.url }}" class="img-thumbnail" height="100" width="100">
+                                                {% endif %}
+
+                                            </div>
+                                            <div class="col-sm-3" style="margin-top:40px">
+                                                <b>{{appointment.client.firstName}}</b>
+                                            </div>
+                                            <div class="col-sm-3" style="margin-top:40px">
+                                                <b>{{appointment.when}}</b>
+                                            </div>
+                                            <!-- Trigger the modal with a button -->
+                                            <div class="col-sm-3" style="margin-top:40px">
+                                                <a data-toggle="modal" data-target="#myModal">Cancel</a>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Cancel Appointment</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to cancel this appointment?</p>
+                                                            {{apointment.pk}}
+                                                        </div>
+                                                        
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-default" href="../{{appointment.pk}}/delete">Yes</a>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                          </div>
+
+                                            
+                                        </div>
+                                        
+                                    {% endfor %}
+                            </div>
                             
-                            </div>
-                            <!-- <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Danny Phantom</p> -->
-                                        <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>12pm appointment with Danny Phantom</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Jemes Roe</p> -->
-                                        <!--<img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>1pm appointment with Jemes Roe</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Booby Smurda</p> -->
-                                        <!-- <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>2pm appointment with Booby Smurda</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Aubrey Graham</p> -->
-                                        <!--<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>3pm appointment with Aubrey Graham</p>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>     
                     <div class="panel panel-default text-left">
-                        <div class="panel-body">
-                            <div class="row" style="text-align:center">
+                        <div class="panel-body" style="text-align:center">
                                 
                                     <h3 class="section-heading">Recent Comments</h3>
-                                
-                            </div>
-                            <!-- <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Danny Phantom</p> -->
-                                        <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>Excellent Haircut! 10/10 would recommend!</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Jemes Roe</p> -->
-                                        <!--<img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>WORST HAIRCUT OF MY LIFE!! DON'T GET YOUR HAIRCUT HERE. WILL REGRET IT!!!</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Booby Smurda</p> -->
-                                        <!-- <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>Unforgettable experience.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="well">
-                                        <p>Aubrey Graham</p> -->
-                                        <!--<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-                                    <!-- </div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p>This is my favorite barber of all time. He does a great job with combovers and fades all for a great price. 10/10</p>
-                                    </div>
-                                </div> -->
+                                    
                             </div>
                         </div>
                     </div> 

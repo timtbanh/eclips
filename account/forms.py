@@ -51,6 +51,7 @@ class EditBarberForm(forms.Form):
     skills = forms.CharField(widget=forms.Textarea)
     schedule = forms.CharField(widget=forms.Textarea)
     profilePic = forms.ImageField(required=False)
+    gallery = forms.ImageField(required=False)
 
 class ReviewForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)

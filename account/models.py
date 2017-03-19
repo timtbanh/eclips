@@ -23,6 +23,13 @@ class Barber(models.Model):
         return 'Barber Name: %s %s' % (self.firstName, self.lastName)
 
 @python_2_unicode_compatible
+class Gallery(models.Model):
+    barber = models.ForeignKey(Barber, on_delete=models.CASCADE)
+    gallery = models.ImageField(upload_to="barbers/gallery", null=True, blank=True)
+    def __str__(self):
+        return 'Gallery Picture: %s' % (self.gallery.url)
+    
+@python_2_unicode_compatible
 class Client(models.Model):
     firstName = models.CharField(max_length=200)
     lastName = models.CharField(max_length=200)
