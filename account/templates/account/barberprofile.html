@@ -70,14 +70,21 @@
                         {% else %}
                             <img src="{{ barber.profilePic.url }}" class="img-thumbnail" height="100" width="100">
                         {% endif %}
-                        <p><br><b>Address:</b><br>{{barber.address}}</p>
+                        <p><br><b>Address:</b><br>{{barber.address}}
+                        <br><br><b>Location Preference:</b><br>{{barber.walkin}}</p>
                     </div>
                     </a>
                     <div class="well">
+                        <h4>Price:</h4> 
+                        <p>{{barber.price}}</p>
                         <h4>Services</h4>
                         <p>
                             {{barber.skills}}
                         </p>
+                    </div>
+                    <div class="well">
+                        <h4>Schedule</h4>
+                        <p>{{barber.schedule}}</p>
                     </div>
                 </div> 
                  <div class="col-sm-9">

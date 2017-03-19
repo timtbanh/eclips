@@ -209,6 +209,8 @@ def barberhome(request, barberEmail):
 
             if(len(reviewQuery) > 0):
                 reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+            else:
+                reviewList = ""
 
             return render(request, 'account/barberhome.html', 
                           {'barber': returnBarber,
@@ -247,6 +249,8 @@ def clienthome(request, clientEmail):
 
             if(len(reviewQuery) > 0):
                 reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+            else:
+                reviewList = ""
 
             return render(request, 'account/clienthome.html', 
                           {'client': returnClient,
@@ -440,6 +444,9 @@ def writereview(request, apptReviewID):
                     except ObjectDoesNotExist: # new review must be made
                         reviewObj = Review(comment=comment, writer=userEmail,appointment=apptObj)
                         reviewObj.save()
+                else:
+                    reviewObj = Review(comment=comment, writer=userEmail,appointment=apptObj)
+                    reviewObj.save()
                 outURL = '../{0}/clienthome.html'.format(userEmail)
                 return HttpResponseRedirect(outURL)
         else:
