@@ -298,6 +298,7 @@ def editbarber(request, barberEmail):
                         pass
                     try:
                         galleryObj = Gallery(barber = barberObj, gallery = request.FILES['gallery'])
+                        galleryObj.save();
                     except MultiValueDictKeyError:
                         pass
                     barberObj.phone = phone
@@ -308,7 +309,7 @@ def editbarber(request, barberEmail):
                     barberObj.schedule = schedule
                     barberObj.skills = skills
                     barberObj.save();
-                    galleryObj.save();
+                    
                     return HttpResponseRedirect('barberprofile.html')
 
             return render(request, 'account/editbarber.html', {'form': form})
