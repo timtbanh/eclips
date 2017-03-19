@@ -196,6 +196,9 @@ def barberhome(request, barberEmail):
                 barberObj = Barber.objects.get(email=barberEmail)
                 returnBarber = getBarber(barberObj)
                 
+                # get a list of appointments associated with this client
+                apptQuery = Appointment.objects.filter(barber=barberObj)
+
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
 
                 # get a list of a reviews based on the list of appointments
