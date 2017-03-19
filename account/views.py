@@ -402,13 +402,13 @@ def writereview(request, apptReviewID):
                 
                 # review already exists for this client and appt
                 if(apptObj.review_set.count() > 0):
-                    reviewObj = apptObj.review_set.get(writer=userEmail)
-                    if(reviewObj.writer == userEmail):
+                    try:
+                        reviewObj = apptObj.review_set.get(writer=userEmail)
                         reviewObj.comment = comment
                         reviewObj.save()
-                else:    # new review must be made
-                    reviewObj = Review(comment=comment, writer=userEmail,appointment=apptObj)
-                    reviewObj.save()
+                    except ObjectDoesNotExist: # new review must be made
+                        reviewObj = Review(comment=comment, writer=userEmail,appointment=apptObj)
+                        reviewObj.save()
                 outURL = '../{0}/clienthome.html'.format(userEmail)
                 return HttpResponseRedirect(outURL)
         else:
