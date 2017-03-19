@@ -374,14 +374,12 @@ def makeappointment(request, barberEmail):
         return render(request, 'account/makeappointment.html',{'form': form})
     #if fail to have session redirect to login
     return HttpResponseRedirect('../../login.html')
+
 def cancelappointment(request, apptReviewID):
-    if (request.session.has_key('email')):
         clientEmail = request.session['email']
-        clientObj = Client.objects.get(email=clientEmail)
         apptObj = Appointment.objects.get(pk=apptReviewID)
         apptObj.delete()
-        return HttpResponseRedirect('{0}/clienthome.html'.format(clientEmail,{'email':clientEmail}))
-    #if fail to have session redirect to login
-    return render(request,'../login.html')
+        outURL = '../{0}/clienthome.html'.format(clientEmail)
+        return HttpResponseRedirect(outURL)
     
 
