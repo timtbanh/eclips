@@ -49,7 +49,6 @@ class Appointment(models.Model):
 @python_2_unicode_compatible
 class Review(models.Model):
     comment = models.TextField()
-    rating = models.IntegerField()
     appointment = models.ForeignKey(Appointment, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return 'Review of %s' % (self.appointment)

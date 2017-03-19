@@ -5,7 +5,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.images import ImageFile
 from django.core.files.base import File
 from .models import Barber, Client, Appointment, Review
-from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm
+from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm, ReviewForm
 import hashlib   # password hasher
 from datetime import datetime
 
@@ -50,6 +50,7 @@ def getBarber(barberObj):
 #   helper function to format all appointments in one object
 def getAppointment(apptObj):
     return {
+        'pk': apptObj.pk,
         'when': apptObj.when,
         'address': apptObj.address,
         'barber': getBarber(apptObj.barber),
@@ -332,7 +333,6 @@ def findbarber(request, clientEmail):
 def makeappointment(request, barberEmail):
     if (request.session.has_key('email')):
         clientEmail = request.session['email']
-        print(clientEmail)
         clientObj = Client.objects.get(email=clientEmail)
 
         barberObj = Barber.objects.get(email=barberEmail)
@@ -365,6 +365,22 @@ def makeappointment(request, barberEmail):
             form = AppointmentForm()
         return render(request, 'account/makeappointment.html',{'form': form})
     #if fail to have session redirect to login
+    return HttpResponseRedirect('../../login.html')
+
+def writereview(request, apptReviewID):
+    if(request.session.has_key('email')):
+        clientEmail = request.session['email']
+        clientObj = Client.objects.get(email=clientEmail)
+        if(request.method == 'POST'):
+            form = ReviewForm(data=request.POST)
+            if (form.is_valid()):
+                apptObj=Appointment.objects.get(pk=apptReviewID)
+                comment=form.cleaned_data['comment']
+
+
+        else:
+            form = ReviewForm()
+        return render(request, "account/writereview.html", {'form': form})
     return HttpResponseRedirect('../../login.html')
 
 def fakeclienthome(request):
