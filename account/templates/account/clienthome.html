@@ -86,7 +86,23 @@
                                     <h3 class="section-heading">Recent Appointments</h3>
                                     
                                     {% for appointment in apptList%}
-                                        appointment.when
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                {% if appointment.barber.profilePic == "" %}
+                                                    <img src="../../static/img/no-img.png" class="img-thumbnail"- height="100" width="100">
+                                                {% else %}
+                                                    <img src="{{ appointment.barber.profilePic.url }}" class="img-thumbnail" height="100" width="100">
+                                                {% endif %}
+
+                                            </div>
+                                            <div class="col-sm-3" style="margin-top:40px">
+                                                <b>{{appointment.barber.firstName}}</b>
+                                            </div>
+                                            <div class="col-sm-3" style="margin-top:40px">
+                                                <b>{{appointment.when}}</b>
+                                            </div>
+                                        </div>
+                                        
                                     {% endfor %}
                                 </div>
                             </div>
