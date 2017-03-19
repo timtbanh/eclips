@@ -124,11 +124,11 @@
                                             <div class="col-sm-3" style="margin-top:25px">
                                                 <a href="../{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
                                                 </br>
-                                                <a data-toggle="modal" data-target="#myModal">Cancel</a>
+                                                <a data-toggle="modal" data-target="#m{{appointment.pk}}">Cancel</a>
                                             </div>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal fade" id="{{appointment.pk}}" role="dialog">
                                                 <div class="modal-dialog">
 
                                                     <!-- Modal content-->
