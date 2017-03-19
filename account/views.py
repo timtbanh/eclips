@@ -195,22 +195,34 @@ def barberhome(request, barberEmail):
             try:
                 barberObj = Barber.objects.get(email=barberEmail)
                 returnBarber = getBarber(barberObj)
-                
+
+            except ObjectDoesNotExist:
+                return HttpResponseRedirect('../login.html')
+
+            try:
                 # get a list of appointments associated with this client
                 apptQuery = Appointment.objects.filter(barber=barberObj)
-
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
 
-                # get a list of a reviews based on the list of appointments
-                
-                reviewQuery = [oneAppt.review_set.all().exclude(writer=clientEmail).get() for oneAppt in apptQuery]
-                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
-                return render(request, 'account/barberhome.html', 
-                              {'barber': returnBarber,
-                                'apptList': apptList,
-                                'reviewList': reviewList} )
             except ObjectDoesNotExist:
-                pass
+                apptList = ""
+
+            reviewQuery = []
+            # get a list of a reviews based on the list of appointments 
+            for oneAppt in apptQuery:
+                try:
+                    reviewQuery.append(oneAppt.review_set.all().exclude(writer=barberEmail).get())
+                except ObjectDoesNotExist:
+                    pass
+
+            if(len(reviewQuery) > 0):
+                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+
+            return render(request, 'account/barberhome.html', 
+                          {'barber': returnBarber,
+                            'apptList': apptList,
+                            'reviewList': reviewList} )
+         
     return HttpResponseRedirect('../login.html')
 
 
@@ -222,25 +234,33 @@ def clienthome(request, clientEmail):
                 clientObj = Client.objects.get(email=clientEmail)
                 returnClient = getClient(clientObj)
 
+            except ObjectDoesNotExist:
+                return HttpResponseRedirect('../login.html')
+
+            try:
                 # get a list of appointments associated with this client
                 apptQuery = Appointment.objects.filter(client=clientObj)
-
-                print(apptQuery)
                 apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
 
-                # get a list of a reviews based on the list of appointments
-                
-                reviewQuery = [oneAppt.review_set.all().exclude(writer=clientEmail).get() for oneAppt in apptQuery]
-                print(reviewQuery)
-                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
-                print(reviewList)
-                return render(request, 'account/clienthome.html', 
-                              {'client': returnClient,
-                                'apptList': apptList,
-                                'reviewList': reviewList} )
-
             except ObjectDoesNotExist:
-                pass
+                apptList = ""
+
+            reviewQuery = []
+            # get a list of a reviews based on the list of appointments 
+            for oneAppt in apptQuery:
+                try:
+                    reviewQuery.append(oneAppt.review_set.all().exclude(writer=clientEmail).get())
+                except ObjectDoesNotExist:
+                    pass
+
+            if(len(reviewQuery) > 0):
+                reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+
+            return render(request, 'account/clienthome.html', 
+                          {'client': returnClient,
+                            'apptList': apptList,
+                            'reviewList': reviewList} )
+
     return HttpResponseRedirect('../login.html')
 
 # TODO
