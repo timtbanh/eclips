@@ -4,8 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.images import ImageFile
 from django.core.files.base import File
+
 from .models import Barber, Gallery, Client, Appointment, Review
-from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm
+from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, AppointmentForm, ReviewForm
+
 import hashlib   # password hasher
 from datetime import datetime
 
@@ -347,7 +349,6 @@ def findbarber(request, clientEmail):
 def makeappointment(request, barberEmail):
     if (request.session.has_key('email')):
         clientEmail = request.session['email']
-        print(clientEmail)
         clientObj = Client.objects.get(email=clientEmail)
 
         barberObj = Barber.objects.get(email=barberEmail)
@@ -383,6 +384,23 @@ def makeappointment(request, barberEmail):
     #if fail to have session redirect to login
     return HttpResponseRedirect('../../login.html')
 
+def writereview(request, apptReviewID):
+    if(request.session.has_key('email')):
+        clientEmail = request.session['email']
+        clientObj = Client.objects.get(email=clientEmail)
+        if(request.method == 'POST'):
+            form = ReviewForm(data=request.POST)
+            if (form.is_valid()):
+                apptObj=Appointment.objects.get(pk=apptReviewID)
+                comment=form.cleaned_data['comment']
+
+
+        else:
+            form = ReviewForm()
+        return render(request, "account/writereview.html", {'form': form})
+    return HttpResponseRedirect('../../login.html')
+
+
 def cancelappointment(request, apptReviewID):
         clientEmail = request.session['email']
         apptObj = Appointment.objects.get(pk=apptReviewID)
@@ -390,4 +408,10 @@ def cancelappointment(request, apptReviewID):
         outURL = '../{0}/clienthome.html'.format(clientEmail)
         return HttpResponseRedirect(outURL)
     
+def fakeclienthome(request):
+    return render(request, "account/fakeclienthome.html")
+def fakeclientprofile(request):
+    return render(request, "account/fakeclientprofile.html")
+def fakebarberprofile(request):
+    return render(request, "account/fakebarberprofile.html")
 
