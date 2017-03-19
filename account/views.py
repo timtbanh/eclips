@@ -48,6 +48,16 @@ def getBarber(barberObj):
         
     }
 
+#   helper function to format all appointments in one object
+def getAppointment(apptObj):
+    return {
+        'when': apptObj.when,
+        'address': apptObj.address,
+        'barber': getBarber(apptObj.barber),
+        'client': getClient(apptObj.client),
+        'isCompleted': apptObj.isCompleted
+    }
+
 def index(request):
     try:
         del request.session['email']
@@ -185,7 +195,14 @@ def clienthome(request, clientEmail):
         try:
             clientObj = Client.objects.get(email=clientEmail)
             returnClient = getClient(clientObj)
-            return render(request, 'account/clienthome.html', {'client': returnClient})
+
+            # get a list of appointments associated with this client
+            apptQuery = Appointment.objects.filter(client=clientObj)
+            apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+            return render(request, 'account/clienthome.html', 
+                          {'client': returnClient,
+                            'apptList': apptList} )
+
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')

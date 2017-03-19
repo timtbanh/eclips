@@ -20,6 +20,7 @@ urlpatterns = [
     v.findbarber, name='findbarber'),
     url(r'account/(?P<barberEmail>.*)/makeappointment.html$', 
         v.makeappointment, name='makeappointment'),
+    url(r'account/(?P<apptReviewID>.*)/writereview.html', v.writereview, name='writereview'),
 
 ]   
 
