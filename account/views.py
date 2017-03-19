@@ -381,6 +381,6 @@ def cancelappointment(request, apptReviewID):
         apptObj.delete()
         return HttpResponseRedirect('{0}/clienthome.html'.format(clientEmail,{'email':clientEmail}))
     #if fail to have session redirect to login
-    #return render(request,'../login.html')
+    return render(request,'../login.html')
     
 
