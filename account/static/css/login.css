@@ -43,8 +43,6 @@
   padding: 10px 20px;
 }
 
-label#fields {
-  display: inline-block;
-  width:26vmax;
-  text-align: left;
+td {
+  padding: 1vmax;
 }

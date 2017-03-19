@@ -54,4 +54,4 @@ class EditBarberForm(forms.Form):
     gallery = forms.ImageField(required=False)
 
 class ReviewForm(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea)
+    comment = forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 12}))

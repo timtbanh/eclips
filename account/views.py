@@ -35,7 +35,6 @@ def getClient(clientObj):
         'phone': clientObj.phone,
         'address': clientObj.address,
         'description': clientObj.description,
-        'avgRating': clientObj.avgRating,
         'profilePic': clientObj.profilePic
     }
 
@@ -52,10 +51,8 @@ def getBarber(barberObj):
         'price': barberObj.price,
         'walkin': barberObj.walkin,
         'schedule': barberObj.schedule,
-        'avgRating': barberObj.avgRating,
         'profilePic': barberObj.profilePic,
         'skills': barberObj.skills
-        
     }
 
 #   helper function to format all appointments in one object
@@ -365,9 +362,7 @@ def findbarber(request, clientEmail):
         barber_array = Barber.objects.all()
         try:
             clientObj = Client.objects.get(email=clientEmail)
-            barberList = Barber.objects.all()
-            
-            
+            barberList = Barber.objects.all()            
             return render(request, 'account/findbarber.html',{'barberList': barberList})
         except ObjectDoesNotExist:
             pass
@@ -452,11 +447,3 @@ def cancelappointment(request, apptReviewID):
         apptObj.delete()
         outURL = '../{0}/clienthome.html'.format(clientEmail)
         return HttpResponseRedirect(outURL)
-    
-def fakeclienthome(request):
-    return render(request, "account/fakeclienthome.html")
-def fakeclientprofile(request):
-    return render(request, "account/fakeclientprofile.html")
-def fakebarberprofile(request):
-    return render(request, "account/fakebarberprofile.html")
-

@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sign Up Page</title>
+    <title>Write a Review</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -72,20 +72,21 @@
 
     <section id="signup">
         <div class="container">
-            <h3> Write an Appointment </h3>
-            <p>For appointment between Barber: <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b> and Client: <b>{{appointment.client.firstName}} {{appointment.client.lastName}}</b> @ {{appointment.when}}</p>
             <div class="row">
-                    <div class="form-group">
+                <h3> Write a Review </h3>
+                <p>For the appointment between the barber <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b> and client <b>{{appointment.client.firstName}} {{appointment.client.lastName}}</b> @ {{appointment.when}}</p>
+                
+                    <div class="form-group" style="text-align: center;">
                         {{ form.comment.errors }}
-                        <label for="{{ form.comment.id_for_label }}">Comments</label>
                         <br>{{ form.comment }}
                     </div>
-                </div>
+                
                     <div class="clearfix">
                         <div id="success">
                             <button onclick="" type="submit" class="btn btn-xl" style="display: block; margin: 0 auto;">Update</button>
                         </div>
                     </div>
+                </div>
             </div>
         </div>    
     </section>   
