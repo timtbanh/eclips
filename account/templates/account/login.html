@@ -96,50 +96,6 @@
                                 <button type="submit" class="btn btn-m" onclick="">LOGIN</button>
                             </div>
                         </div>
-
-
-<!--         <div class="container" align="center">
-            <div class="row">
-                <form name="loginform" id="loginForm" method="post" role="form">
-                {% csrf_token %}
-                    <div class="col-md-12">
-                        <p>{{ form.non_field_errors }}</p>
-                        <label>CHECK ONE ONLY:</label>
-                        <div class="form-group">
-                            {{ form.password.errors }}
-                            {% for radio in form.userType %}
-                            <label class="switch">
-                                {{radio}}
-                                &nbsp; for spacing
-                            </label>
-                            {% endfor %}
-                        </div>
-
-                        <p id="loginfields">
-                            {{ form.email.errors }}
-                            <label id="fields">Email</label>
-                                id="fields" for="{{ form.email.id_for_label }}"
-                            <div id="cell">
-                                {{ form.email }}
-                            </div>
-                        </p>
-
-                        <p id="loginfields">
-                            {{ form.password.errors }}
-                            <label id="fields">Password</label>
-                                  id="fields" for="{{ form.password.id_for_label }}"
-                            <div id="cell">
-                                {{ form.password }}
-                            </div>
-                        </p>
-
-                        <div class="clearfix"></div>
-                        <div style="text-align: center;">
-                            <div class="col-xs-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-m" onclick="">LOGIN</button>
-                            </div>
-                        </div> -->
                     </div>
                 </form>
             </div>

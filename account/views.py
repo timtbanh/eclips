@@ -11,12 +11,7 @@ from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, Appoin
 import hashlib   # password hasher
 from datetime import datetime
 
-
-def update_filename(instance, filename):
-    path = "upload/path/"
-    format = instance.userid + instance.file_extension
-    return os.path.join(path, format)
-
+# helper function to save all review info in one object
 def getReview(reviewObj):
     return{
         'pk': reviewObj.pk,
@@ -72,7 +67,7 @@ def index(request):
         pass
     return render_to_response('index.html')
 
-# conrtroller for crateing a new account
+# controller for crateing a new account
 def signup(request):
     if (request.method == 'POST'):
         form = SignupForm(data=request.POST)   # instance of signupForm
