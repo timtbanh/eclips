@@ -92,8 +92,10 @@
                                                 {% else %}
                                                     <img src="{{ appointment.barber.profilePic.url }}" class="img-thumbnail" height="100" width="100">
                                                 {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                                            {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -105,13 +107,6 @@
                     <div class="row">
                         <a href="findbarber.html" class="btn btn-xl">Find Barbers</a>
                     </div>
-<!--
-                    <div class="panel panel-default text-left">
-                        <div class="panel-body" style="text-align:center">
-                            <h3 class="section-heading">INFORMATION</h3>
-                        </div>
-                    </div>   
--->
                 </div>
             </div>
         {% endif %}
