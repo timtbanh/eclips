@@ -51,6 +51,7 @@ def getBarber(barberObj):
 #   helper function to format all appointments in one object
 def getAppointment(apptObj):
     return {
+        'pk': apptObj.pk,
         'when': apptObj.when,
         'address': apptObj.address,
         'barber': getBarber(apptObj.barber),
@@ -373,4 +374,12 @@ def makeappointment(request, barberEmail):
         return render(request, 'account/makeappointment.html',{'form': form})
     #if fail to have session redirect to login
     return HttpResponseRedirect('../../login.html')
+
+def cancelappointment(request, apptReviewID):
+        clientEmail = request.session['email']
+        apptObj = Appointment.objects.get(pk=apptReviewID)
+        apptObj.delete()
+        outURL = '../{0}/clienthome.html'.format(clientEmail)
+        return HttpResponseRedirect(outURL)
+    
 
