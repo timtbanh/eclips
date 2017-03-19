@@ -304,10 +304,10 @@ def findbarber(request, clientEmail):
         barber_array = Barber.objects.all()
         try:
             clientObj = Client.objects.get(email=clientEmail)
-            form = findabarberform
+            barberList = Barber.objects.all()
             
             
-            return render(request, 'account/findbarber.html', {'form': form})
+            return render(request, 'account/findbarber.html',{'barberList': barberList})
         except ObjectDoesNotExist:
             pass
     return HttpResponseRedirect('../login.html')
