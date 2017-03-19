@@ -124,7 +124,9 @@
                                 <div class="panel-body" style="text-align:center">
                                     <h3 class="section-heading">Gallery</h3>
                                     {% for g in gallery %}
-                                        <img src="{{g.gallery.url}}" class="img-thumbnail" height="100" width="100">
+                                        {%if g%}
+                                            <img src="{{g.gallery.url}}" class="img-thumbnail" height="100" width="100">
+                                        {%endif %}
                                     {% endfor %}
                                 </div>
                             </div>
