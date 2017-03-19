@@ -78,27 +78,31 @@
                 </div>
 
                 <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel panel-default text-left">
-                                <div class="panel-body">
-                                <header id="status">
-                                    <h4 contenteditable="true">Status: </h4>
-                                    <span>Taking Appointments</span>
-                                    
-                                </div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
                     <div class="panel panel-default text-left">
                         <div class="panel-body">
                             <div class="row" style="text-align:center">
 
                                     <h3 class="section-heading">Upcoming Appointments</h3>
+
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>Client's Name</h4>
+                                            </div>
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>When</h4>
+                                            </div>
+
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>Address</h4>
+                                            </div>                                            
+                                        </div>
+
                                     {% for appointment in apptList%}
                                         <div class="row">
                                             <div class="col-sm-3">
+                                            <a href="../{{ appointment.client.email }}/clientprofile.html">
                                                 {% if appointment.client.profilePic == "" %}
                                                     <img src="../../static/img/no-img.png" class="img-thumbnail"- height="100" width="100">
                                                 {% else %}
@@ -106,14 +110,18 @@
                                                 {% endif %}
 
                                             </div>
-                                            <div class="col-sm-3" style="margin-top:40px">
+                                            </a>
+                                            <div class="col-sm-2" style="margin-top:25px">
                                                 <b>{{appointment.client.firstName}}</b>
                                             </div>
-                                            <div class="col-sm-3" style="margin-top:40px">
+                                            <div class="col-sm-2" style="margin-top:25px">
                                                 <b>{{appointment.when}}</b>
                                             </div>
+                                            <div class="col-sm-2" style="margin-top:25px">
+                                                <b>{{appointment.address}}</b>
+                                            </div>
                                             <!-- Trigger the modal with a button -->
-                                            <div class="col-sm-3" style="margin-top:40px">
+                                            <div class="col-sm-3" style="margin-top:25px">
                                                 <a data-toggle="modal" data-target="#myModal">Cancel</a>
                                             </div>
 
@@ -129,7 +137,6 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>Are you sure you want to cancel this appointment?</p>
-                                                            {{apointment.pk}}
                                                         </div>
                                                         
                                                         <div class="modal-footer">

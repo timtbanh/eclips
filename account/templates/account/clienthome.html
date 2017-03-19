@@ -83,38 +83,55 @@
                         <div class="col-sm-12">
                             <div class="panel panel-default text-left">
                                 <div class="panel-body" style="text-align:center"> 
-                                    <h3 class="section-heading">Recent Appointments</h3>
+                                    <h3 class="section-heading">Upcoming Appointments</h3>
+
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>Barber's Name</h4>
+                                            </div>
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>When</h4>
+                                            </div>
+
+                                            <div class="col-sm-2" style="margin-top:10px">
+                                                <h4>Address</h4>
+                                            </div>                                            
+                                        </div>
                                     
                                     {% for appointment in apptList%}
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-3">                                            
+                                            <a href="../{{ appointment.barber.email }}/barberprofile.html">
                                                 {% if appointment.barber.profilePic == "" %}
                                                     <img src="../../static/img/no-img.png" class="img-thumbnail"- height="100" width="100">
                                                 {% else %}
                                                     <img src="{{ appointment.barber.profilePic.url }}" class="img-thumbnail" height="100" width="100">
                                                 {% endif %}
+                                            </a>
 
                                             </div>
-                                            <div class="col-sm-3" style="margin-top:40px">
+                                            <div class="col-sm-2" style="margin-top:25px">
                                                 <b>{{appointment.barber.firstName}} {{appointment.barber.lastName}}</b>
                                             </div>
-                                            <div class="col-sm-3" style="margin-top:40px">
+                                            <div class="col-sm-2" style="margin-top:25px">
                                                 <b>{{appointment.when}}</b>
                                             </div>
-                                            <div class="col-sm-3" style="margin-top:40px">
-                                                <b>Address: {{appointment.address}}</b>
+
+                                            <div class="col-sm-2" style="margin-top:25px">
+                                                <b>{{appointment.address}}</b>
                                             </div>
 
-                                            <div class="col-sm-4">
-                                                <a href="../{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
-                                            </div>
-                                            <!-- Trigger the modal with a button -->
-                                            <div class="col-sm-4">
-                                                <a data-toggle="modal" data-target="#myModal"><b>Cancel Appointment</b></a>
+                                            <div class="col-sm-3" style="margin-top:25px">
+                                                <a href="../../review/{{appointment.pk}}/writereview.html"><b>Write a Review</b></a>
+                                                </br>
+                                                <a data-toggle="modal" data-target="#{{appointment.pk}}">Cancel</a>
+
                                             </div>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal fade" id="{{appointment.pk}}" role="dialog">
                                                 <div class="modal-dialog">
 
                                                     <!-- Modal content-->
@@ -125,7 +142,6 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>Are you sure you want to cancel this appointment?</p>
-                                                            {{apointment.pk}}
                                                         </div>
                                                         
                                                         <div class="modal-footer">
