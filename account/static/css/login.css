@@ -43,3 +43,8 @@
   padding: 10px 20px;
 }
 
+label#fields {
+  display: inline-block;
+  width: 355px;
+  text-align: left;
+}

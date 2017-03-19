@@ -61,7 +61,7 @@
     </nav>
         
     <section id="login">
-        <div class="container">
+        <div class="container" align="center">
             <div class="row">
                 <form name="loginform" id="loginForm" method="post" role="form">
                 {% csrf_token %}
@@ -74,32 +74,27 @@
                             {% for radio in form.userType %}
                             <label class="switch">
                                 {{radio}}
+                                &nbsp; <!-- for spacing -->
                             </label>
                             {% endfor %}
                         </div>
 
                         {{ form.email.errors }}
-                        <label for="{{ form.email.id_for_label }}">Email</label>
+                            <label id="fields" for="{{ form.email.id_for_label }}">Email</label>
                         <div class="form-group">
                             {{ form.email }}
-                            <!-- <input type="text" class="form-control" placeholder="name@example.com" id="email" required data-validation-required-message="Please enter your Email."> -->
                         </div>
                         {{ form.password.errors }}
-                        <label for="{{ form.password.id_for_label }}">Password</label>
+                        <label id="fields" for="{{ form.password.id_for_label }}">Password</label>
                         <div class="form-group">
                             {{ form.password }}
-                            <!-- <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your password."> -->
                         </div>
                         <div class="clearfix"></div>
                         <div style="text-align: center;">
-                        <div class="col-xs-5 text-right">
+                        <div class="col-xs-12 text-center">
                             <div id="success"></div>
                             <button type="submit" class="btn btn-m" onclick="">LOGIN</button>
                         </div>
-                        <!-- <div class="col-xs-7 text-left">
-                            <div id="forgot"></div>
-                            <button type="forgotpw" class="btn btn-m">FORGOT PASSWORD</button>
-                         </div>-->
                     </div>
                     </div>
                 </form>
