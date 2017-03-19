@@ -9,12 +9,6 @@ from .forms import SignupForm, EditClientForm, EditBarberForm, LoginForm, Appoin
 import hashlib   # password hasher
 from datetime import datetime
 
-
-def update_filename(instance, filename):
-    path = "upload/path/"
-    format = instance.userid + instance.file_extension
-    return os.path.join(path, format)
-
 #   helper function to save all client info in one object
 def getClient(clientObj):
     return {
@@ -300,16 +294,16 @@ def editbarber(request, barberEmail):
 
 def findbarber(request, clientEmail):
     if (request.session.has_key('email')):
-        email = request.session['email']
+        clientEmail = request.session['email']
+        clientObj = Client.objects.get(email=clientEmail)
+        
         barber_array = Barber.objects.all()
-        try:
-            clientObj = Client.objects.get(email=clientEmail)
-            form = findabarberform
-            
-            
-            return render(request, 'account/findbarber.html', {'form': form})
-        except ObjectDoesNotExist:
-            pass
+
+        # for b in barber_array:
+        #     barberEmail = request.session['b.email']
+        #     barber = Barber.objects.get(email=barberEmail)
+
+        return render(request, 'account/findbarber.html', {'barber_array': barber_array, })
     return HttpResponseRedirect('../login.html')
 
 def makeappointment(request, barberEmail):

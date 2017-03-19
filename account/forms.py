@@ -7,7 +7,6 @@ class SignupForm(forms.Form):
     CHOICES = [
         ('selectBarber', 'I am a Barber'),
         ('selectClient', 'I am a Client')]
-
     userType = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     firstName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Joe', 'size': 40}))
     lastName = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Doe', 'size': 40}))

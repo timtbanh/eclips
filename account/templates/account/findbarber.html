@@ -26,7 +26,7 @@
     <!-- Theme CSS -->
     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/clienthome.css' %}" rel="stylesheet">
-    <link href="{% static 'css/stylesheet.css' %}"rel="stylesheet">
+    <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
 </head>
     
 <body id="page-top" class="index">  
@@ -58,20 +58,19 @@
     <!-- /.container-fluid -->
     </nav>
     
-    <form role="form" action="../makeappointment.html" method="post">
     {% csrf_token %}
-        <div class="container">
-            <h3>Find a Barber</h3>
-            
-            <div class="row">
-                <h5>Choose a Barber</h5>
-            </div>
-            <div class="row">
-                {% for b in Barber.objects.all() %}
-                    {{ b.firstName }} {{ b.lastName }}
-                {% endfor %}
-            </div>
+    <div class="container">
+        <h3>Find a Barber</h3>
+        
+        <div class="row">
+            <h5>Choose a Barber</h5>
         </div>
+        <div class="row">
+            {% for b in barber_array %}
+                {{ b.firstName }} {{ b.lastName }}
+            {% endfor %} 
+        </div>
+    </div>
     </form>
     
     <!-- jQuery -->
