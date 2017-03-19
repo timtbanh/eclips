@@ -264,15 +264,65 @@ def barberprofile(request, barberEmail):
     barberObj = Barber.objects.get(email=barberEmail)
     returnGallery = barberObj.gallery_set.all()
     returnBarber = getBarber(barberObj)
-    return render(request, "account/barberprofile.html", {'barber': returnBarber, 'gallery': returnGallery})
+    try:
+        # get a list of appointments associated with this client
+        apptQuery = Appointment.objects.filter(barber=barberObj)
+        apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+
+    except ObjectDoesNotExist:
+        apptList = ""
+
+    reviewQuery = []
+    # get a list of a reviews based on the list of appointments 
+    for oneAppt in apptQuery:
+        try:
+            reviewQuery.append(oneAppt.review_set.all().exclude(writer=barberEmail).get())
+        except ObjectDoesNotExist:
+            pass
+
+    if(len(reviewQuery) > 0):
+        reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+    else:
+        reviewList = ""
+
+    return render(request, 'account/barberhome.html', 
+                  {'barber': returnBarber,
+                    'gallery': returnGallery,
+                    'apptList': apptList,
+                    'reviewList': reviewList} )
 
 def clientprofile(request, clientEmail):
     # filter through the client table by matching emails
     clientObj = Client.objects.get(email=clientEmail)
     returnClient = getClient(clientObj)
+
+    try:
+        # get a list of appointments associated with this client
+        apptQuery = Appointment.objects.filter(client=clientObj)
+        apptList = [getAppointment(singleAppt) for singleAppt in apptQuery]
+
+    except ObjectDoesNotExist:
+        apptList = ""
+
+    reviewQuery = []
+    # get a list of a reviews based on the list of appointments 
+    for oneAppt in apptQuery:
+        try:
+            reviewQuery.append(oneAppt.review_set.all().exclude(writer=clientEmail).get())
+        except ObjectDoesNotExist:
+            pass
+
+    if(len(reviewQuery) > 0):
+        reviewList = [getReview(reviewObj) for reviewObj in reviewQuery]
+    else:
+        reviewList = ""
+
     # send the information about the particular client with matching
     # email to clientprofile.html
-    return render(request, "account/clientprofile.html", {'client': returnClient})
+    return render(request, 'account/clientprofile.html', 
+                  {'client': returnClient,
+                    'apptList': apptList,
+                    'reviewList': reviewList} )
 
 def editclient(request, clientEmail):
     if (request.session.has_key('email')):

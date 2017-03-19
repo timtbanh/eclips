@@ -125,6 +125,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default text-left">
+                                    <div class="panel-body" style="text-align:center">
+                                        <h3 class="section-heading">Comments</h3>
+                                        <div class="row">
+                                            <div class="col-sm-4" style="margin-top:10px">
+                                                <h4>Info</h4>
+                                            </div>
+                                            <div class="col-sm-8" style="margin-top:10px">
+                                                <h4>Comment</h4>
+                                            </div>                              
+                                        </div>
+                                        {% for aReview in reviewList%}
+                                            <div class="row">
+                                                <div class="col-sm-4" style="margin-top:25px">
+                                                    <b>{{aReview.appointment.client.firstName}} {{aReview.appointment.client.lastName}}
+                                                    </br>
+                                                    {{aReview.appointment.when}}</b>
+                                                </div>
+
+                                                <div class="col-sm-8" style="margin-top:25px">
+                                                    {{aReview.comment}}
+                                                </div>
+                                                
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
